@@ -81,6 +81,13 @@ def beginServer():
                     thread.daemon = True
                     thread.start()
                     GlobalSettings.inProgress = True
+                elif command == 'OutsideIn':
+                    stop()
+                    write('Starting OutsideIn\n')
+                    thread = threading.Thread(target=RoundAndRound.outsideIn,args=(bb, ))
+                    thread.daemon = True
+                    thread.start()
+                    GlobalSettings.inProgress = True
                 else:
                     write('Unrecognized Command\n')
             if 'color' in dataDict:
