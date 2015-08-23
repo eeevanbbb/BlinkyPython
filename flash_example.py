@@ -32,7 +32,7 @@ keepGoing = True
 def flash(blinky,color,speed):
     global keepGoing
     while keepGoing is False:
-        break
+        continue
     blinky.buf = ""
     blinky.position = 0
     while True:
@@ -44,7 +44,7 @@ def flash(blinky,color,speed):
             blinky.sendPixel(color[0],color[1],color[2])
     
         blinky.show()
-    
+        
         time.sleep(1/float(speed))
         if keepGoing is False:
             keepGoing = True
@@ -53,7 +53,7 @@ def flash(blinky,color,speed):
         for x in range(150):
             blinky.sendPixel(0,0,0)
         blinky.show()
-    
+        
         time.sleep(1/float(speed))
         if keepGoing is False:
             keepGoing = True

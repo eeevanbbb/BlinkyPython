@@ -6,7 +6,7 @@ keepGoing = True
 def start(blinky,color,speed):
     global keepGoing
     while keepGoing is False:
-        break
+        continue
     blinky.buf = ""
     blinky.position = 0
     while True:
@@ -31,7 +31,7 @@ def stop():
 def startSnake(blinky,color,speed):
     global keepGoing
     while keepGoing is False:
-        break
+        continue
     blinky.buf = ""
     blinky.position = 0
     length = 10
