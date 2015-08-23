@@ -1,6 +1,8 @@
 from BlinkyTape import BlinkyTape
 import time
 
+import GlobalSettings as G
+
 #bb = BlinkyTape('/dev/tty.usbmodemfa131')
 #bb = BlinkyTape('COM8')
 '''
@@ -27,38 +29,43 @@ while True:
     time.sleep(.5)
 '''
 
-keepGoing = True
 
-def flash(blinky,color,speed):
-    global keepGoing
-    while keepGoing is False:
+def flash(blinky):
+    while G.keepGoing is False:
         continue
     blinky.buf = ""
     blinky.position = 0
     while True:
         for x in range(50):
-            blinky.sendPixel(color[0],color[1],color[2])
+            blinky.sendPixel(G.color[0],G.color[1],G.color[2])
         for x in range(50):
-            blinky.sendPixel(color[0],color[1],color[2])
+            blinky.sendPixel(G.color[0],G.color[1],G.color[2])
         for x in range(50):
-            blinky.sendPixel(color[0],color[1],color[2])
+            blinky.sendPixel(G.color[0],G.color[1],G.color[2])
     
         blinky.show()
         
-        time.sleep(1/float(speed))
-        if keepGoing is False:
-            keepGoing = True
+        time.sleep(1/float(G.speed))
+        if G.keepGoing is False:
+            G.keepGoing = True
             return
     
         for x in range(150):
             blinky.sendPixel(0,0,0)
         blinky.show()
         
-        time.sleep(1/float(speed))
-        if keepGoing is False:
-            keepGoing = True
+        time.sleep(1/float(G.speed))
+        if G.keepGoing is False:
+            G.keepGoing = True
             return
-        
-def stopFlash():
-    global keepGoing
-    keepGoing = False
+            
+def clear(blinky):
+    while G.keepGoing is False:
+        continue
+    for x in range(150):
+        blinky.sendPixel(0,0,0)
+    blinky.show()
+    while True:
+        if G.keepGoing is False:
+            G.keepGoing = True
+            return

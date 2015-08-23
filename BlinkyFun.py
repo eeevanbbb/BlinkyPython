@@ -6,11 +6,12 @@ import time
 
 from BlinkyTape import BlinkyTape
 
+import GlobalSettings
+
 import flash_example
 import RoundAndRound
 
 bb = BlinkyTape('/dev/tty.usbmodemfa131',ledCount=150)
-lastCommand = 'None'
 p = None
 client_socket = 'None'
 
@@ -20,16 +21,12 @@ def write(message):
     except socket.error:
         print("Socket error\n")
 
-def stop(command):
-    client_socket.send("Stopping "+command+"\n")
-    if command == 'Flash':
-        flash_example.stopFlash()
-    elif command == 'RoundAndRound' or command == 'Snake':
-        RoundAndRound.stop()
+def stop():
+    if GlobalSettings.inProgress == True:
+        GlobalSettings.keepGoing = False
 
 def beginServer():   
     global bb
-    global lastCommand
     global p
     global client_socket
     server = socket.socket()
@@ -50,39 +47,48 @@ def beginServer():
         except ValueError:
             write('Malformed Data\n')
         else:
-            if 'command' not in dataDict or 'color' not in dataDict or 'speed' not in dataDict:
-                write('Missing command, color, or speed\n')
-            else:
+            if 'command' in dataDict:
                 command = dataDict['command']
-                color = dataDict['color']
-                speed = dataDict['speed']
                 if command == 'Flash':
-                    stop(lastCommand)
+                    stop()
                     write('Starting Flash\n')
-                    thread = threading.Thread(target=flash_example.flash,args=(bb,color,speed, ))
+                    thread = threading.Thread(target=flash_example.flash,args=(bb, ))
                     thread.daemon = True
                     thread.start()
+                    GlobalSettings.inProgress = True
                 elif command == 'Stop':
-                    stop(lastCommand)
-                #elif command == 'DiscoParty':
-                #    client_socket.send('Starting DiscoParty\n')
-                #    bb = None
-                #    p = subprocess.Popen(['processing-java', '--sketch=/Users/Evan/Documents/Processing/libraries/BlinkyTape/examples/DiscoParty', '--run'])
+                    write("Stopping\n")
+                    stop()
+                    GlobalSettings.inProgress = False
+                elif command == 'Clear':
+                    stop()
+                    write('Clearing\n')
+                    thread = threading.Thread(target=flash_example.clear,args=(bb, ))
+                    thread.daemon = True
+                    thread.start()
+                    GlobalSettings.inProgress = True
                 elif command == 'RoundAndRound':
-                    stop(lastCommand)
+                    stop()
                     write('Starting Round and Round\n')
-                    thread = threading.Thread(target=RoundAndRound.start,args=(bb,color,speed, ))
+                    thread = threading.Thread(target=RoundAndRound.start,args=(bb, ))
                     thread.daemon = True
                     thread.start()
+                    GlobalSettings.inProgress = True
                 elif command == 'Snake':
-                    stop(lastCommand)
+                    stop()
                     write('Starting Snake\n')
-                    thread = threading.Thread(target=RoundAndRound.startSnake,args=(bb,color,speed, ))
+                    thread = threading.Thread(target=RoundAndRound.startSnake,args=(bb, ))
                     thread.daemon = True
                     thread.start()
+                    GlobalSettings.inProgress = True
                 else:
                     write('Unrecognized Command\n')
-                lastCommand = command
+            if 'color' in dataDict:
+                color = dataDict['color']
+                GlobalSettings.setColor(color)
+            if 'speed' in dataDict:
+                speed = dataDict['speed']
+                GlobalSettings.setSpeed(speed)
                 
                 
 beginServer()
