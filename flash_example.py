@@ -1,5 +1,6 @@
 from BlinkyTape import BlinkyTape
 import time
+from random import randint
 
 import GlobalSettings as G
 
@@ -33,8 +34,6 @@ while True:
 def flash(blinky):
     while G.keepGoing is False:
         continue
-    blinky.buf = ""
-    blinky.position = 0
     while True:
         for x in range(50):
             blinky.sendPixel(G.color[0],G.color[1],G.color[2])
@@ -66,6 +65,24 @@ def clear(blinky):
         blinky.sendPixel(0,0,0)
     blinky.show()
     while True:
+        if G.keepGoing is False:
+            G.keepGoing = True
+            return
+            
+            
+def random(blinky):
+    while G.keepGoing is False:
+        continue
+    while True:
+        chosen = randint(0,149)
+        for x in range(0,chosen):
+            blinky.sendPixel(0,0,0)
+        blinky.sendPixel(randint(0,255),randint(0,255),randint(0,255))
+        for x in range(chosen+1,150):
+            blinky.sendPixel(0,0,0)
+        blinky.show()
+        
+        time.sleep(1/float(G.speed))
         if G.keepGoing is False:
             G.keepGoing = True
             return

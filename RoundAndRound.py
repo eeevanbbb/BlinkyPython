@@ -12,8 +12,6 @@ def sendBlackPixel(blinky):
 def start(blinky):
     while G.keepGoing is False:
         continue
-    blinky.buf = ""
-    blinky.position = 0
     while True:
         for i in range(0,150):
             for x in range(0,i):
@@ -32,8 +30,6 @@ def start(blinky):
 def startSnake(blinky):
     while G.keepGoing is False:
         continue
-    blinky.buf = "" #Do we need these 2 lines?
-    blinky.position = 0
     length = 10
     while True:
         leftover = 0

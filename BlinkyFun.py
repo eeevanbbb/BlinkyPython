@@ -88,6 +88,13 @@ def beginServer():
                     thread.daemon = True
                     thread.start()
                     GlobalSettings.inProgress = True
+                elif command == 'Random':
+                    stop()
+                    write('Starting Random\n')
+                    thread = threading.Thread(target=flash_example.random,args=(bb, ))
+                    thread.daemon = True
+                    thread.start()
+                    GlobalSettings.inProgress = True
                 else:
                     write('Unrecognized Command\n')
             if 'color' in dataDict:
