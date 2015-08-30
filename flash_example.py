@@ -96,3 +96,35 @@ def solid(blinky):
         if G.keepGoing is False:
             G.keepGoing = True
             return
+            
+
+def rainbow(blinky):
+    while G.keepGoing is False:
+        continue
+    r = 0
+    g = 0
+    b = 0
+    while True:
+        rNew = randint(0,255)
+        gNew = randint(0,255)
+        bNew = randint(0,255)
+        
+        transitionTime = 3
+        numberOfSteps = G.speed * transitionTime
+        
+        rDelta = (r - rNew) / numberOfSteps
+        gDelta = (g - gNew) / numberOfSteps
+        bDelta = (b - bNew) / numberOfSteps
+        
+        while transitionTime > 0
+            r += rDelta
+            g += gDelta
+            b += bDelta
+            for x in range(150):
+                blinky.sendPixel(r,g,b)
+            blinky.show()
+        
+            time.sleep(1/float(G.speed))
+            if G.keepGoing is False:
+                G.keepGoing = True
+                return
