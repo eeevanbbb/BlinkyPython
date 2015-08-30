@@ -122,7 +122,7 @@ def rainbow(blinky):
             r += rDelta
             g += gDelta
             b += bDelta
-            print(str(int(r))+","+str(int(g))+","+str(int(b)))
+
             for x in range(150):
                 blinky.sendPixel(int(r),int(g),int(b))
             blinky.show()
