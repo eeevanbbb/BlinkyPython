@@ -83,7 +83,7 @@ def listen():
                 elif command == "Solid":
                     startRoutine(flash_example.solid,name="Solid")
                 elif command == "Rainbow":
-                    startRoutine(flash_example.rainbox,name="Rainbox")
+                    startRoutine(flash_example.rainbow,name="Rainbow")
                 else:
                     write('Unrecognized Command\n')
             if 'color' in dataDict:
