@@ -35,7 +35,6 @@ def flash(blinky):
     while G.keepGoing is False:
         continue
     while True:
-	print("Flash")
         for x in range(150):
             blinky.sendPixel(G.color[0],G.color[1],G.color[2])
     
@@ -83,3 +82,11 @@ def random(blinky):
         if G.keepGoing is False:
             G.keepGoing = True
             return
+            
+            
+def solid(blinky):
+    while G.keepGoing is False:
+        continue
+    for x in range(150):
+        blinky.sendPixel(G.color[0],G.color[1],G.color[2])
+    blinky.show()

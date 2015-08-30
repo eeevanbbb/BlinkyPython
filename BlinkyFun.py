@@ -25,6 +25,16 @@ def write(message):
 def stop():
     if GlobalSettings.inProgress == True:
         GlobalSettings.keepGoing = False
+        
+def startRoutine(routine,name="routine"):
+    print("Stopping...")
+    stop()
+    print("Starting "+name+"...")
+    write("Starting "+name)
+    thread = threading.Thread(target=routine,args=(bb, ))
+    thread.daemon = True
+    thread.start()
+    GlobalSettings.inProgress = True
 
 def listen():  
     print("Listening...") 
@@ -55,14 +65,7 @@ def listen():
             if 'command' in dataDict:
                 command = dataDict['command']
                 if command == 'Flash':
-                    print("Stop\n")
-                    stop()
-                    print("Start Flash\n")
-                    write('Starting Flash\n')
-                    thread = threading.Thread(target=flash_example.flash,args=(bb, ))
-                    thread.daemon = True
-                    thread.start()
-                    GlobalSettings.inProgress = True
+                    startRoutine(flash_example.flash,name="Flash")
                 elif command == 'Stop':
                     write("Stopping\n")
                     stop()
