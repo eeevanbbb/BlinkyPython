@@ -35,15 +35,12 @@ def flash(blinky):
     while G.keepGoing is False:
         continue
     while True:
-        for x in range(50):
-            blinky.sendPixel(G.color[0],G.color[1],G.color[2])
-        for x in range(50):
-            blinky.sendPixel(G.color[0],G.color[1],G.color[2])
-        for x in range(50):
+	print("Flash")
+        for x in range(150):
             blinky.sendPixel(G.color[0],G.color[1],G.color[2])
     
         blinky.show()
-        
+
         time.sleep(1/float(G.speed))
         if G.keepGoing is False:
             G.keepGoing = True

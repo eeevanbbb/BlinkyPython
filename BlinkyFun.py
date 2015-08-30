@@ -11,46 +11,53 @@ import GlobalSettings
 import flash_example
 import RoundAndRound
 
-bb = BlinkyTape('/dev/tty.usbmodemfa131',ledCount=150)
+bb = BlinkyTape('/dev/ttyACM0',ledCount=150)
 p = None
 client_socket = 'None'
 
 def write(message):
+    print("Writing message to client: "+message)
     try:
         client_socket.send(message)
     except socket.error:
-        print("Socket error\n")
+        print("Cannot write to client")
 
 def stop():
     if GlobalSettings.inProgress == True:
         GlobalSettings.keepGoing = False
 
-def beginServer():   
+def listen():  
+    print("Listening...") 
     global bb
     global p
     global client_socket
     server = socket.socket()
-    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
-    server.bind(('192.168.0.196',4329))
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind(('',4329))
     server.listen(4)
     client_socket, client_address = server.accept()
     while True:
         try:
             received_data = client_socket.recv(128)
+            if not received_data:
+                print("Received empty packet from client")
+                return
         except socket.error:
-            beginServer()
-            break
-        print(received_data)
+            print("Cannot receive data from client")
+            return
+        #print(received_data)
         jsonData = received_data
         try:
             dataDict = json.loads(jsonData)
         except ValueError:
-            write('Malformed Data\n')
+            write('Malformed Data')
         else:
             if 'command' in dataDict:
                 command = dataDict['command']
                 if command == 'Flash':
+                    print("Stop\n")
                     stop()
+                    print("Start Flash\n")
                     write('Starting Flash\n')
                     thread = threading.Thread(target=flash_example.flash,args=(bb, ))
                     thread.daemon = True
@@ -104,5 +111,9 @@ def beginServer():
                 speed = dataDict['speed']
                 GlobalSettings.setSpeed(speed)
                 
-                
+
+def beginServer():
+    while True:
+        listen()
+            
 beginServer()
