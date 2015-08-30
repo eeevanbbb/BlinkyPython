@@ -62,6 +62,12 @@ def listen():
         except ValueError:
             write('Malformed Data')
         else:
+            if 'color' in dataDict:
+                color = dataDict['color']
+                GlobalSettings.setColor(color)
+            if 'speed' in dataDict:
+                speed = dataDict['speed']
+                GlobalSettings.setSpeed(speed)
             if 'command' in dataDict:
                 command = dataDict['command']
                 if command == 'Flash':
@@ -86,12 +92,6 @@ def listen():
                     startRoutine(flash_example.rainbow,name="Rainbow")
                 else:
                     write('Unrecognized Command\n')
-            if 'color' in dataDict:
-                color = dataDict['color']
-                GlobalSettings.setColor(color)
-            if 'speed' in dataDict:
-                speed = dataDict['speed']
-                GlobalSettings.setSpeed(speed)
                 
 
 def beginServer():

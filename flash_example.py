@@ -109,19 +109,22 @@ def rainbow(blinky):
         gNew = randint(0,255)
         bNew = randint(0,255)
         
-        transitionTime = 3
-        numberOfSteps = G.speed * transitionTime
+        transitionTime = 3.0
+        numberOfSteps = float(G.speed) * transitionTime
         
-        rDelta = (r - rNew) / numberOfSteps
-        gDelta = (g - gNew) / numberOfSteps
-        bDelta = (b - bNew) / numberOfSteps
+        rDelta = (rNew - r) / numberOfSteps
+        gDelta = (gNew - g) / numberOfSteps
+        bDelta = (bNew - b) / numberOfSteps
         
         while transitionTime > 0:
+            transitionTime -= 1/float(G.speed)
+
             r += rDelta
             g += gDelta
             b += bDelta
+            print(str(int(r))+","+str(int(g))+","+str(int(b)))
             for x in range(150):
-                blinky.sendPixel(r,g,b)
+                blinky.sendPixel(int(r),int(g),int(b))
             blinky.show()
         
             time.sleep(1/float(G.speed))
