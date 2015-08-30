@@ -71,40 +71,17 @@ def listen():
                     stop()
                     GlobalSettings.inProgress = False
                 elif command == 'Clear':
-                    stop()
-                    write('Clearing\n')
-                    thread = threading.Thread(target=flash_example.clear,args=(bb, ))
-                    thread.daemon = True
-                    thread.start()
-                    GlobalSettings.inProgress = True
+                    startRoutine(flash_example.clear,name="Clear")
                 elif command == 'RoundAndRound':
-                    stop()
-                    write('Starting Round and Round\n')
-                    thread = threading.Thread(target=RoundAndRound.start,args=(bb, ))
-                    thread.daemon = True
-                    thread.start()
-                    GlobalSettings.inProgress = True
+                    startRoutine(RoundAndRound.start,name="RoundAndRound")
                 elif command == 'Snake':
-                    stop()
-                    write('Starting Snake\n')
-                    thread = threading.Thread(target=RoundAndRound.startSnake,args=(bb, ))
-                    thread.daemon = True
-                    thread.start()
-                    GlobalSettings.inProgress = True
+                    startRoutine(RoundAndRound.startSnake,name="Snake")
                 elif command == 'OutsideIn':
-                    stop()
-                    write('Starting OutsideIn\n')
-                    thread = threading.Thread(target=RoundAndRound.outsideIn,args=(bb, ))
-                    thread.daemon = True
-                    thread.start()
-                    GlobalSettings.inProgress = True
+                    startRoutine(RoundAndRound.outsideIn,name="OutsideIn")
                 elif command == 'Random':
-                    stop()
-                    write('Starting Random\n')
-                    thread = threading.Thread(target=flash_example.random,args=(bb, ))
-                    thread.daemon = True
-                    thread.start()
-                    GlobalSettings.inProgress = True
+                    startRoutine(flash_example.random,name="Random")
+                elif command == "Solid":
+                    startRoutine(flash_example.solid,name="Solid")
                 else:
                     write('Unrecognized Command\n')
             if 'color' in dataDict:
