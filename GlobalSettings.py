@@ -1,4 +1,4 @@
-color = [0,0,0]
+color = [0,0,255]
 speed = 1.0
 keepGoing = True
 inProgress = False
