@@ -90,3 +90,8 @@ def solid(blinky):
     for x in range(150):
         blinky.sendPixel(G.color[0],G.color[1],G.color[2])
     blinky.show()
+    
+    while True:
+        if G.keepGoing is False:
+            G.keepGoing = True
+            return
