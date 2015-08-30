@@ -116,7 +116,7 @@ def rainbow(blinky):
         gDelta = (g - gNew) / numberOfSteps
         bDelta = (b - bNew) / numberOfSteps
         
-        while transitionTime > 0
+        while transitionTime > 0:
             r += rDelta
             g += gDelta
             b += bDelta
