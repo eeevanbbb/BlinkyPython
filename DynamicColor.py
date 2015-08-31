@@ -1,5 +1,6 @@
 from BlinkyTape import BlinkyTape
 import time
+from random import randint
 
 import GlobalSettings as G
 
