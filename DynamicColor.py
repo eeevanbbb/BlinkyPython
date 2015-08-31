@@ -31,9 +31,9 @@ def dynamicColor():
                 b += bDelta
 
                 # Setting global colors
-                G.color[0] = r
-                G.color[1] = g
-                G.color[2] = b
+                G.color[0] = int(r)
+                G.color[1] = int(g)
+                G.color[2] = int(b)
 
                 # sleepy
                 time.sleep(1/float(G.speed))
