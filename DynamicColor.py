@@ -6,9 +6,9 @@ import GlobalSettings as G
 
 def dynamicColor():
     # Copy pasta from flash_example.rainbow
-    r = 0
-    g = 0
-    b = 0
+    r = G.color[0]
+    g = G.color[1]
+    b = G.color[2]
     while True:
         if G.dynaColor is True:
             rNew = randint(0,255)
