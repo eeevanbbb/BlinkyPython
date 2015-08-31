@@ -37,7 +37,7 @@ def startRoutine(routine,name="routine"):
     thread.start()
     GlobalSettings.inProgress = True
 
-def startDCThread():
+def startDC():
     print("Starting Dynamic Color thread")
     GlobalSettings.dynaColor = True
     dcThread = threading.Thread(target=DynamicColor.dynamicColor)
@@ -45,11 +45,9 @@ def startDCThread():
     dcThread.start()
     GlobalSettings.GDCThread = dcThread
 
-def stopDCThread():
+def stopDC():
     print("Stopping Dynamic Color thread")
     GlobalSettings.dynaColor = False
-    GlobalSettings.GDCThread.exit()
-    GlobalSettings.GDCThread = null
 
 def listen():
     print("Listening...")
@@ -106,9 +104,9 @@ def listen():
                 elif command == "Rainbow":
                     startRoutine(flash_example.rainbow,name="Rainbow")
                 elif command == "DCStart":
-                    startDCThread();
+                    startDC();
                 elif command == "DCStop":
-                    stopDCThread();
+                    stopDC();
                 else:
                     write('Unrecognized Command\n')
 
