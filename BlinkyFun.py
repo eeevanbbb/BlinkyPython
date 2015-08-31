@@ -45,6 +45,7 @@ def startDCThread():
 
 def listen():
     print("Listening...")
+    startDCThread()
     global bb
     global p
     global client_socket
@@ -53,7 +54,6 @@ def listen():
     server.bind(('',4329))
     server.listen(4)
     client_socket, client_address = server.accept()
-    startDCThread()
     while True:
         try:
             received_data = client_socket.recv(128)
