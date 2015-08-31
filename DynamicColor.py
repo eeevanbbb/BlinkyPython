@@ -5,11 +5,6 @@ from random import randint
 import GlobalSettings as G
 
 def dynamicColor():
-    # Grabbing current color
-    OGr = G.color[0]
-    OGg = G.color[1]
-    OGb = G.color[2]
-
     # Copy pasta from flash_example.rainbow
     r = 0
     g = 0
@@ -42,7 +37,4 @@ def dynamicColor():
                 # sleepy
                 time.sleep(1/float(G.speed))
         else:
-            G.color[0] = OGr
-            G.color[1] = OGg
-            G.color[2] = OGb
             return
