@@ -11,6 +11,7 @@ import GlobalSettings
 import flash_example
 import RoundAndRound
 import DynamicColor
+import Music
 
 bb = BlinkyTape('/dev/ttyACM0',ledCount=150)
 p = None
@@ -75,18 +76,24 @@ def listen():
         except ValueError:
             write('Malformed Data')
         else:
+            left = 0 #Music
+            right = 0 #Music
             if 'color' in dataDict:
                 color = dataDict['color']
                 GlobalSettings.setColor(color)
             if 'speed' in dataDict:
                 speed = dataDict['speed']
                 GlobalSettings.setSpeed(speed)
+            if 'Music' in dataDict:
+                left = dataDict['Music'][0]
+                right = dataDict['Music'][1]
             if 'command' in dataDict:
                 command = dataDict['command']
                 if command == 'Flash':
                     startRoutine(flash_example.flash,name="Flash")
                 elif command == 'Stop':
-                    write("Stopping\n")
+                    write("Stopping...")
+                    print("Stopping...")
                     stop()
                     GlobalSettings.inProgress = False
                 elif command == 'Clear':
@@ -107,6 +114,13 @@ def listen():
                     startDC();
                 elif command == "DCStop":
                     stopDC();
+                elif command == "Music":
+                    write("Stopping...")
+                    print("Stopping...")
+                    stop()
+                    write("Showing volume...")
+                    print("Showing volume; left: "+str(left)+", right: "+str(right))
+                    Music.showVolume(left,right,bb)
                 else:
                     write('Unrecognized Command\n')
 
