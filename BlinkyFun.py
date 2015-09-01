@@ -10,6 +10,7 @@ import GlobalSettings
 
 import flash_example
 import RoundAndRound
+import DynamicColor
 
 bb = BlinkyTape('/dev/ttyACM0',ledCount=150)
 p = None
@@ -25,7 +26,7 @@ def write(message):
 def stop():
     if GlobalSettings.inProgress == True:
         GlobalSettings.keepGoing = False
-        
+
 def startRoutine(routine,name="routine"):
     print("Stopping...")
     stop()
@@ -36,8 +37,20 @@ def startRoutine(routine,name="routine"):
     thread.start()
     GlobalSettings.inProgress = True
 
-def listen():  
-    print("Listening...") 
+def startDC():
+    print("Starting Dynamic Color thread")
+    GlobalSettings.dynaColor = True
+    dcThread = threading.Thread(target=DynamicColor.dynamicColor)
+    dcThread.daemon = True
+    dcThread.start()
+    GlobalSettings.GDCThread = dcThread
+
+def stopDC():
+    print("Stopping Dynamic Color thread")
+    GlobalSettings.dynaColor = False
+
+def listen():
+    print("Listening...")
     global bb
     global p
     global client_socket
@@ -90,12 +103,16 @@ def listen():
                     startRoutine(flash_example.solid,name="Solid")
                 elif command == "Rainbow":
                     startRoutine(flash_example.rainbow,name="Rainbow")
+                elif command == "DCStart":
+                    startDC();
+                elif command == "DCStop":
+                    stopDC();
                 else:
                     write('Unrecognized Command\n')
-                
+
 
 def beginServer():
     while True:
         listen()
-            
+
 beginServer()
