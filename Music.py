@@ -26,9 +26,9 @@ def showVolume(left,right,blinky):
         sendColorPixel(blinky)
     for x in range(adjustedLeft,75):
         sendBlackPixel(blinky)
-    for x in range(75,75+adjustedRight):
-        sendColorPixel(blinky)
-    for x in range(75+adjustedRight,150):
+    for x in range(75,150-adjustedRight):
         sendBlackPixel(blinky)
+    for x in range(150-adjustedRight,150):
+        sendColorPixel(blinky)
     
     blinky.show()
