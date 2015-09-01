@@ -23,18 +23,21 @@ def dynamicColor():
             bDelta = (bNew - b) / numberOfSteps
 
             while transitionTime > 0:
-                transitionTime -= 1/float(G.speed)
+                if G.dynaColor is True:
+                    transitionTime -= 1/float(G.speed)
 
-                r += rDelta
-                g += gDelta
-                b += bDelta
+                    r += rDelta
+                    g += gDelta
+                    b += bDelta
 
-                # Setting global colors
-                G.color[0] = int(r)
-                G.color[1] = int(g)
-                G.color[2] = int(b)
+                    # Setting global colors
+                    G.color[0] = int(r)
+                    G.color[1] = int(g)
+                    G.color[2] = int(b)
 
-                # sleepy
-                time.sleep(1/float(G.speed))
+                    # sleepy
+                    time.sleep(1/float(G.speed))
+                else:
+                    return
         else:
             return
