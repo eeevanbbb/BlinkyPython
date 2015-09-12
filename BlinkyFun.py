@@ -12,7 +12,6 @@ import flash_example
 import RoundAndRound
 import DynamicColor
 import Music
-import MidiStuff
 
 bb = BlinkyTape('/dev/ttyACM0',ledCount=150)
 p = None
@@ -122,8 +121,6 @@ def listen():
                     write("Showing volume...")
                     print("Showing volume; left: "+str(left)+", right: "+str(right))
                     Music.showVolume(left,right,bb)
-                elif command == "Midi":
-                    startRoutine(MidiStuff.straightMap,name="Midi")
                 else:
                     write('Unrecognized Command\n')
 
