@@ -53,7 +53,7 @@ def stopDC():
 def showPixels(onLights):
     for x in range(0,150):
         if onLights[x]:
-            bb.sendPixel(G.color[0],G.color[1],G.color[2])
+            bb.sendPixel(GlobalSettings.color[0],GlobalSettings.color[1],GlobalSettings.color[2])
         else:
             bb.sendPixel(0,0,0)
     bb.show()

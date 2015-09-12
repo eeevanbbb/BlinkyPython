@@ -1,7 +1,7 @@
 #Run this program NOT on the Pi, but on another computer hooked up to a midi device
 
 import sys, pygame, pygame.midi
-import socket
+import socket, json
 
 #set up socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -40,9 +40,11 @@ while True:
         onLights[beginPixel] = on
         onLights[beginPixel+1] = on
     
-        print onLights   
+        #print onLights   
         
-        client_socket.send({"command":"Show","onLights":onLights})
+        message = json.dumps({"command":"Show","onLights":onLights})
+        print message
+        client_socket.send(message)
 
     # wait 10ms - this is arbitrary, but wait(0) still resulted
     # in 100% cpu utilization
