@@ -21,10 +21,6 @@ inp = pygame.midi.Input(0)
 lowNote = 36
 highNote = 96
 
-onLights = {}
-for x in range(0,150):
-    onLights[x] = False
-
 while True:
     if inp.poll():
         # no way to find number of messages in queue
@@ -37,6 +33,7 @@ while True:
         
         beginPixel = (note - lowNote) * 2
         
+        onLights = {}
         onLights[beginPixel] = on
         onLights[beginPixel+1] = on
     
@@ -44,7 +41,8 @@ while True:
         
         message = json.dumps({"command":"Show","onLights":onLights})
         print message
-        client_socket.send(message)
+        sent = client_socket.send(message)
+        print(sent)
 
     # wait 10ms - this is arbitrary, but wait(0) still resulted
     # in 100% cpu utilization

@@ -50,8 +50,13 @@ def stopDC():
     print("Stopping Dynamic Color thread")
     GlobalSettings.dynaColor = False
     
-def showPixels(onLights):
-    for x in range(0,150):
+onLights = {}
+for x in range(0,150):
+    onLights[x] = False
+def showPixels(theOnLights):
+    for x in theOnLights:
+        onLights[int(x)] = theOnLights[x]
+    for x in onLights:
         if onLights[x]:
             bb.sendPixel(GlobalSettings.color[0],GlobalSettings.color[1],GlobalSettings.color[2])
         else:
@@ -70,7 +75,7 @@ def listen():
     client_socket, client_address = server.accept()
     while True:
         try:
-            received_data = client_socket.recv(128)
+            received_data = client_socket.recv(8192)
             if not received_data:
                 print("Received empty packet from client")
                 return
