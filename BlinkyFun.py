@@ -49,6 +49,14 @@ def startDC():
 def stopDC():
     print("Stopping Dynamic Color thread")
     GlobalSettings.dynaColor = False
+    
+def showPixels(onLights):
+    for x in range(0,150):
+        if onLights[x]:
+            bb.sendPixel(G.color[0],G.color[1],G.color[2])
+        else:
+            bb.sendPixel(0,0,0)
+    bb.show()
 
 def listen():
     print("Listening...")
@@ -121,6 +129,9 @@ def listen():
                     write("Showing volume...")
                     print("Showing volume; left: "+str(left)+", right: "+str(right))
                     Music.showVolume(left,right,bb)
+                elif command == "Show":
+                    onLights = dataDict["onLights"]
+                    showPixels(onLights)
                 else:
                     write('Unrecognized Command\n')
 
