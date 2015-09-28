@@ -19,20 +19,20 @@ def start(blinky):
     while True:
         for i in range(0,150):
             if i < 75:
-                for x in range(0,i):
+                for x in range(0,i+1):
                     sendColorPixel(blinky, (i-x))
-                for x in range(i,150-i):
+                for x in range(i+1,149-i):
                     sendBlackPixel(blinky)
-                for x in range(150-i,150):
-                    sendColorPixel(blinky, (x-(150-i)))
+                for x in range(149-i,150):
+                    sendColorPixel(blinky, (x-(149-i)))
             else:
-                for x in range(0,i-75):
+                for x in range(0,i-75+1):
                     sendBlackPixel(blinky)
-                for x in range(i-75,75):
-                    sendColorPixel(blinky, (74-(x-(i-75))))
-                for x in range(75,150-(i-75)):
-                    sendColorPixel(blinky, (74-((150-(i-75))-x)))
-                for x in range(150-(i-75),150):
+                for x in range(i-75+1,75):
+                    sendColorPixel(blinky, (x-(i-75+1)))
+                for x in range(75,149-(i-75)):
+                    sendColorPixel(blinky, (149-(i-75))-1-x)
+                for x in range(149-(i-75),150):
                     sendBlackPixel(blinky)
             blinky.show()
             time.sleep(1/float(G.speed))
