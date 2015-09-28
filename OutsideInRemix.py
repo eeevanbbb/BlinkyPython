@@ -31,7 +31,7 @@ def start(blinky):
                 for x in range(i-75+1,75):
                     sendColorPixel(blinky, 74-(x-(i-75+1)))
                 for x in range(75,149-(i-75)):
-                    sendColorPixel(blinky, 74-(149-(i-75))-1-x)
+                    sendColorPixel(blinky, 74-((149-(i-75))-1-x))
                 for x in range(149-(i-75),150):
                     sendBlackPixel(blinky)
             blinky.show()
