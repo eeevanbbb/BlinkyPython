@@ -24,7 +24,7 @@ def start(blinky):
                 for x in range(i,150-i):
                     sendBlackPixel(blinky)
                 for x in range(150-i,150):
-                    sendColorPixel(blinky, (x-i))
+                    sendColorPixel(blinky, (x-(150-i)))
             else:
                 for x in range(0,i-75):
                     sendBlackPixel(blinky)
