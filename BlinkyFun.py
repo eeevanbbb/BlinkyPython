@@ -138,7 +138,7 @@ def listen():
                 elif command == "Show":
                     onLights = dataDict["onLights"]
                     showPixels(onLights)
-                elif command == "OutsideInRemix"
+                elif command == "OutsideInRemix":
                     startRoutine(OutsideInRemix.start,name="OutsideInRemix")
                 else:
                     write('Unrecognized Command\n')
