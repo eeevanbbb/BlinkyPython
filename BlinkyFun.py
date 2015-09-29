@@ -12,6 +12,7 @@ import flash_example
 import RoundAndRound
 import DynamicColor
 import Music
+import OutsideInRemix
 
 bb = BlinkyTape('/dev/ttyACM0',ledCount=150)
 p = None
@@ -49,7 +50,7 @@ def startDC():
 def stopDC():
     print("Stopping Dynamic Color thread")
     GlobalSettings.dynaColor = False
-    
+
 onLights = {}
 for x in range(0,150):
     onLights[x] = False
@@ -137,6 +138,8 @@ def listen():
                 elif command == "Show":
                     onLights = dataDict["onLights"]
                     showPixels(onLights)
+                elif command == "OutsideInRemix":
+                    startRoutine(OutsideInRemix.start,name="OutsideInRemix")
                 else:
                     write('Unrecognized Command\n')
 
