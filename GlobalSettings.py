@@ -5,7 +5,7 @@ inProgress = False
 dynaColor = False
 
 def setColor(_color):
-    if dynaColor = False:
+    if dynaColor is False:
         global color
         color = _color
 
