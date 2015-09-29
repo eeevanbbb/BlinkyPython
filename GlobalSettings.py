@@ -5,8 +5,9 @@ inProgress = False
 dynaColor = False
 
 def setColor(_color):
-    global color
-    color = _color
+    if dynaColor = False:
+        global color
+        color = _color
 
 def setSpeed(_speed):
     global speed
