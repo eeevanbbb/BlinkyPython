@@ -125,7 +125,8 @@ def listen():
                 elif command == "Rainbow":
                     startRoutine(flash_example.rainbow,name="Rainbow")
                 elif command == "DCStart":
-                    startDC();
+                    if GlobalSettings.dynaColor is False:
+                        startDC();
                 elif command == "DCStop":
                     stopDC();
                 elif command == "Music":
