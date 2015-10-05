@@ -93,7 +93,10 @@ def validateColor(color):
     return True
 
 def validateSpeed(speed):
-    theSpeed = float(speed)
+    try:
+        theSpeed = float(speed)
+    except:
+        return False
     if not theSpeed or theSpeed <= 0 or theSpeed > 60:
         return False
     else:
