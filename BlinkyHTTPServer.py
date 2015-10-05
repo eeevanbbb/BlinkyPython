@@ -163,12 +163,10 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         if s.path == "/request/hello":
             s.wfile.write("<p>Hello! The server is running.</p>")
         elif s.path == "/request/validcommands":
-            string = "<p>"
+            string = "<ul>"
             for validCommand in command_list:
-                string+=validCommand
-                string+=","
-            string = string[:-1]
-            string+="</p>"
+                string += "<li>" + validCommand + "</li>"
+            string+="</ul>"
             s.wfile.write(string)
         else:
             if s.path.startswith("/command/"):
