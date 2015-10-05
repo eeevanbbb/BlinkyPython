@@ -167,7 +167,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             for validCommand in command_list:
                 string+=validCommand
                 string+=","
-            string-=","
+            string = string[:-1]
             string+="</p>"
             s.wfile.write(string)
         else:
