@@ -75,22 +75,46 @@ def rgb(triplet):
     return _HEXDEC[triplet[0:2]], _HEXDEC[triplet[2:4]], _HEXDEC[triplet[4:6]]
 
 
+#Validate Input
+command_list = ["Flash","Stop","Clear","RoundAndRound","Snake","OutsideIn","Random","Solid","Rainbow","DCStart","DCStop","OutsideInRemix"]
+
+def validateCommand(command):
+    if command in command_list:
+        return True
+    else:
+        return False
+
+def validateColor(color):
+    if len(c) != 6:
+        return False
+    for c in color:
+        if c not in _NUMERALS:
+            return False
+    return True
+
+def validateSpeed(speed):
+    theSpeed = float(speed)
+    if not theSpeed or theSpeed <= 0 or theSpeed > 60:
+        return False
+    else:
+        return True
+
 #Handle Input
 def handleCommand(command):
-    if command == 'Flash':
+    if command == "Flash":
         startRoutine(flash_example.flash,name="Flash")
-    elif command == 'Stop':
+    elif command == "Stop":
         stop()
         GlobalSettings.inProgress = False
-    elif command == 'Clear':
+    elif command == "Clear":
         startRoutine(flash_example.clear,name="Clear")
-    elif command == 'RoundAndRound':
+    elif command == "RoundAndRound":
         startRoutine(RoundAndRound.start,name="RoundAndRound")
-    elif command == 'Snake':
+    elif command == "Snake":
         startRoutine(RoundAndRound.startSnake,name="Snake")
-    elif command == 'OutsideIn':
+    elif command == "OutsideIn":
         startRoutine(RoundAndRound.outsideIn,name="OutsideIn")
-    elif command == 'Random':
+    elif command == "Random":
         startRoutine(flash_example.random,name="Random")
     elif command == "Solid":
         startRoutine(flash_example.solid,name="Solid")
@@ -138,16 +162,25 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         else:
             if s.path.startswith("/command/"):
                 command = s.path.split("/command/")[1]
-                handleCommand(command)
                 s.wfile.write("<p>Received Command: "+command+"</p>")
+                if validateCommand(command) == False:
+                    s.wfile.write("<p>Unrecognized Command</p>")
+                else:
+                    handleCommand(command)
             elif s.path.startswith("/color/"):
                 color = s.path.split("/color/")[1]
-                handleColor(color)
                 s.wfile.write("<p>Received Color: "+color+"</p>")
+                if validateColor(color) == False:
+                    s.wfile.write("<p>Invalid Color</p>")
+                else:
+                    handleColor(color)
             elif s.path.startswith("/speed/"):
                 speed = s.path.split("/speed/")[1]
-                handleSpeed(speed)
                 s.wfile.write("<p>Received Speed: "+speed+"</p>")
+                if validateSpeed(speed) == False:
+                    s.wfile.write("<p>Invalid Speed</p>")
+                else:
+                    handleSpeed(speed)
             else:
                 s.wfile.write("<p>Invalid Route</p>")
             
