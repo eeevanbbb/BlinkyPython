@@ -132,16 +132,25 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         s.send_response(200)
         s.send_header("Content-type","text/html")
         s.end_headers()
-        s.wfile.write("<html><head><title>Blinky Server Response</title></head>")
+        s.wfile.write("<html><head><title>Blinky Server Response</title></head><body>")
         if s.path == "/request/hello":
-            s.wfile.write("<body><p>Hello! The server is running.</p>")
+            s.wfile.write("<p>Hello! The server is running.</p>")
         else:
             if s.path.startswith("/command/"):
-                handleCommand(s.path.split("/command/")[1])
-            if s.path.startswith("/color/"):
-                handleColor(s.path.split("/color/")[1])
-            if s.path.startswith("/speed/"):
-                handleSpeed(s.path.split("/speed/")[1])
+                command = s.path.split("/command/")[1]
+                handleCommand(command)
+                s.wfile.write("<p>Received Command: "+command+"</p>")
+            elif s.path.startswith("/color/"):
+                color = s.path.split("/color/")[1]
+                handleColor(color)
+                s.wfile.write("<p>Received Color: "+color+"</p>")
+            elif s.path.startswith("/speed/"):
+                speed = s.path.split("/speed/")[1]
+                handleSpeed(speed)
+                s.wfile.write("<p>Received Speed: "+speed+"</p>")
+            else:
+                s.wfile.write("<p>Invalid Route</p>")
+            
         
         s.wfile.write("</body></html>")
         
