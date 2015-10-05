@@ -119,8 +119,8 @@ def handleSpeed(speed):
 
 
 #HTTP Server Code, from https://wiki.python.org/moin/BaseHttpServer
-#HOST_NAME = '192.168.0.137'
-HOST_NAME = 'localhost'
+HOST_NAME = '192.168.0.137'
+#HOST_NAME = 'localhost'
 PORT_NUMBER = 9001
 
 class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
