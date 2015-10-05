@@ -85,7 +85,7 @@ def validateCommand(command):
         return False
 
 def validateColor(color):
-    if len(c) != 6:
+    if len(color) != 6:
         return False
     for c in color:
         if c not in _NUMERALS:
