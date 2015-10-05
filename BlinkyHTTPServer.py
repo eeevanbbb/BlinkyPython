@@ -164,7 +164,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             s.wfile.write("<p>Hello! The server is running.</p>")
         elif s.path == "/request/validcommands":
             string = "<p>"
-            for validCommand in validcommands:
+            for validCommand in command_list:
                 string+=validCommand
                 string+=","
             string-=","
