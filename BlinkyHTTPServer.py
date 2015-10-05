@@ -162,6 +162,14 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         s.wfile.write("<html><head><title>Blinky Server Response</title></head><body>")
         if s.path == "/request/hello":
             s.wfile.write("<p>Hello! The server is running.</p>")
+        elif s.path == "/request/validcommands":
+            string = "<p>"
+            for validCommand in validcommands:
+                string+=validCommand
+                string+=","
+            string-=","
+            string+="</p>"
+            s.wfile.write(string)
         else:
             if s.path.startswith("/command/"):
                 command = s.path.split("/command/")[1]
