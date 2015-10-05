@@ -80,6 +80,7 @@ def handleCommand(command):
     if command == 'Flash':
         startRoutine(flash_example.flash,name="Flash")
     elif command == 'Stop':
+        stop()
         GlobalSettings.inProgress = False
     elif command == 'Clear':
         startRoutine(flash_example.clear,name="Clear")
