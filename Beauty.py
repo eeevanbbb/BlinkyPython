@@ -12,9 +12,6 @@ def start(blinky):
 	while True:
 		offset = 0
 		for i in range(0,150):
-			offset += 1
-			if offset == 150:
-				offset = 0
 			red   = math.sin(i+offset)
 			green = math.sin(i+step+offset)
 			blue  = math.sin(i+step*2+offset)
@@ -23,6 +20,9 @@ def start(blinky):
 			green = int(((green + 1) / 2) * 255)
 			blinky.sendPixel(red,blue,green)
 		blinky.show()
+		offset += 1
+		if offset == 150:
+			offset = 0
 		time.sleep(1/float(G.speed))
 		if G.keepGoing is False:
 			G.keepGoing = True
