@@ -13,6 +13,7 @@ import RoundAndRound
 import DynamicColor
 import Music
 import OutsideInRemix
+import Beauty
 
 #Blinky Code
 bb = BlinkyTape('/dev/ttyACM0',ledCount=150)
@@ -76,7 +77,7 @@ def rgb(triplet):
 
 
 #Validate Input
-command_list = ["Flash","Stop","Clear","RoundAndRound","Snake","OutsideIn","Random","Solid","Rainbow","DCStart","DCStop","OutsideInRemix"]
+command_list = ["Flash","Stop","Clear","RoundAndRound","Snake","OutsideIn","Random","Solid","Rainbow","DCStart","DCStop","OutsideInRemix","Beauty"]
 
 def validateCommand(command):
     if command in command_list:
@@ -123,6 +124,8 @@ def handleCommand(command):
         startRoutine(flash_example.solid,name="Solid")
     elif command == "Rainbow":
         startRoutine(flash_example.rainbow,name="Rainbow")
+	elif command == "Beauty":
+		startRoutine(Beauty.start,name="Beauty")
     elif command == "DCStart":
         startDC();
     elif command == "DCStop":
