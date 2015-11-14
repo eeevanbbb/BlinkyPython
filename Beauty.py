@@ -14,9 +14,9 @@ def start(blinky):
 			red   = math.sin(i)
 			green = math.sin(i+step)
 			blue  = math.sin(i+step*2)
-			red   = ((red + 1) / 2) * 255
-			blue  = ((blue + 1) / 2) * 255
-			green = ((green + 1) / 2) * 255
+			red   = int(((red + 1) / 2) * 255)
+			blue  = int(((blue + 1) / 2) * 255)
+			green = int(((green + 1) / 2) * 255)
 			blinky.sendPixel(red,blue,green)
 		blinky.show()
 		time.sleep(1/float(G.speed))
