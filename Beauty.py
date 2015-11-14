@@ -10,10 +10,14 @@ def start(blinky):
 	while G.keepGoing is False:
 		continue
 	while True:
+		offset = 0
 		for i in range(0,150):
-			red   = math.sin(i)
-			green = math.sin(i+step)
-			blue  = math.sin(i+step*2)
+			offset += 1
+			if offset == 150:
+				offset = 0
+			red   = math.sin(i+offset)
+			green = math.sin(i+step+offset)
+			blue  = math.sin(i+step*2+offset)
 			red   = int(((red + 1) / 2) * 255)
 			blue  = int(((blue + 1) / 2) * 255)
 			green = int(((green + 1) / 2) * 255)
