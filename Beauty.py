@@ -11,9 +11,9 @@ def start(blinky):
 		continue
 	while True:
 		for i in range(0,150):
-			red   = math.sine(i)
-			green = math.sine(i+step)
-			blue  = math.sine(i+step*2)
+			red   = math.sin(i)
+			green = math.sin(i+step)
+			blue  = math.sin(i+step*2)
 			red   = ((red + 1) / 2) * 255
 			blue  = ((blue + 1) / 2) * 255
 			green = ((green + 1) / 2) * 255
