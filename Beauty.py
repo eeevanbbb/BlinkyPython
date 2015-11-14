@@ -22,7 +22,7 @@ def start(blinky):
 			blinky.sendPixel(red,blue,green)
 		blinky.show()
 		offset += 1
-		if offset == 150:
+		if offset == 1000000:
 			offset = 0
 		time.sleep(1/float(G.speed))
 		if G.keepGoing is False:
