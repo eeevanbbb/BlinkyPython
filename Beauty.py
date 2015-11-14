@@ -23,6 +23,7 @@ def start(blinky):
 		offset += 1
 		if offset == 150:
 			offset = 0
+		print offset
 		time.sleep(1/float(G.speed))
 		if G.keepGoing is False:
 			G.keepGoing = True
