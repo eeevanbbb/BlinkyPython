@@ -124,8 +124,8 @@ def handleCommand(command):
         startRoutine(flash_example.solid,name="Solid")
     elif command == "Rainbow":
         startRoutine(flash_example.rainbow,name="Rainbow")
-	elif command == "Beauty":
-		startRoutine(Beauty.start,name="Beauty")
+    elif command == "Beauty":
+        startRoutine(Beauty.start,name="Beauty")
     elif command == "DCStart":
         startDC();
     elif command == "DCStop":
