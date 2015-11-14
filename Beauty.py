@@ -7,10 +7,10 @@ import GlobalSettings as G
 step = 50
 
 def start(blinky):
+	offset = 0
 	while G.keepGoing is False:
 		continue
 	while True:
-		offset = 0
 		for i in range(0,150):
 			red   = math.sin(i+offset)
 			green = math.sin(i+step+offset)
@@ -23,7 +23,6 @@ def start(blinky):
 		offset += 1
 		if offset == 150:
 			offset = 0
-		print offset
 		time.sleep(1/float(G.speed))
 		if G.keepGoing is False:
 			G.keepGoing = True
