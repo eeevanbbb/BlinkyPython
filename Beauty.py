@@ -5,6 +5,7 @@ import math
 import GlobalSettings as G
 
 step = 50
+granularity = 50.0
 
 def start(blinky):
 	offset = 0
@@ -12,9 +13,9 @@ def start(blinky):
 		continue
 	while True:
 		for i in range(0,150):
-			red   = math.sin(i+offset)
-			green = math.sin(i+step+offset)
-			blue  = math.sin(i+step*2+offset)
+			red   = math.sin((i+offset) / granularity)
+			green = math.sin((i+step+offset) / granularity)
+			blue  = math.sin((i+step*2+offset) / granularity)
 			red   = int(((red + 1) / 2) * 255)
 			blue  = int(((blue + 1) / 2) * 255)
 			green = int(((green + 1) / 2) * 255)
