@@ -14,6 +14,7 @@ import DynamicColor
 import Music
 import OutsideInRemix
 import Beauty
+import Dance
 
 #Blinky Code
 bb = BlinkyTape('/dev/ttyACM0',ledCount=150)
@@ -77,7 +78,7 @@ def rgb(triplet):
 
 
 #Validate Input
-command_list = ["Flash","Stop","Clear","RoundAndRound","Snake","OutsideIn","Random","Solid","Rainbow","DCStart","DCStop","OutsideInRemix","Beauty"]
+command_list = ["Flash","Stop","Clear","RoundAndRound","Snake","OutsideIn","Random","Solid","Rainbow","DCStart","DCStop","OutsideInRemix","Beauty","FourOnTheFloor","AlternatePush"]
 
 def validateCommand(command):
     if command in command_list:
@@ -103,6 +104,16 @@ def validateSpeed(speed):
     else:
         return True
 
+def validateBPM(bpm):
+	try:
+		theBPM = int(bpm)
+	except:
+		return False
+	if not theBPM or theBPM <= 0 or theBPM > 600:
+		return False
+	else:
+		return True
+
 #Handle Input
 def handleCommand(command):
     if command == "Flash":
@@ -126,6 +137,10 @@ def handleCommand(command):
         startRoutine(flash_example.rainbow,name="Rainbow")
     elif command == "Beauty":
         startRoutine(Beauty.start,name="Beauty")
+	elif command == "FourOnTheFloor":
+		startRoutine(Dance.fourOnTheFloor,name="Four on the Floor")
+	elif command == "AlternatePush":
+		startRoutine(Dance.alernatePush,name="Alternate Push")
     elif command == "DCStart":
         startDC();
     elif command == "DCStop":
@@ -144,7 +159,12 @@ def handleColor(color):
 def handleSpeed(speed):
     theSpeed = float(speed)
     GlobalSettings.setSpeed(speed)
-    print(str(theSpeed))
+    print("Speed: "+str(theSpeed))
+
+def handleBPM(bpm):
+	theBPM = int(bpm)
+	GlobalSettings.setBPM(bpm)
+	print("BPM: "+str(bpm))
 
 
 
@@ -193,6 +213,13 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     s.wfile.write("<p>Invalid Speed</p>")
                 else:
                     handleSpeed(speed)
+			elif s.path.startswith("/bpm/"):
+				bpm = s.path.split("/bpm/")[1]
+				s.wfile.write("<p>Received BPM: "+bpm+"</p>")
+				if validateBPM(bpm) == False:
+					s.wfile.write("<p>Invalid BPM</p>")
+				else:
+					handleBPM(bpm)
             else:
                 s.wfile.write("<p>Invalid Route</p>")
             

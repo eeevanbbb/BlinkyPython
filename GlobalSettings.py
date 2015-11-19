@@ -3,6 +3,7 @@ speed = 1.0
 keepGoing = True
 inProgress = False
 dynaColor = False
+bpm = 120
 
 def setColor(_color):
     if dynaColor is False:
@@ -12,3 +13,7 @@ def setColor(_color):
 def setSpeed(_speed):
     global speed
     speed = _speed
+
+def setBPM(_bpm):
+	global bpm
+	bpm = _bpm
