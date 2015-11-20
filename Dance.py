@@ -100,8 +100,8 @@ def downbeatPeaks(blinky):
 def dartInFour(blinky):
     beat = 1
     dartCount = 0
-    dartLeft = 60
-    dartRight = 80
+    dartLeft = 50
+    dartRight = 100
     while G.keepGoing is False:
         continue
     while True:
@@ -121,7 +121,7 @@ def dartInFour(blinky):
                 for i in range(x+1,150):
                     blinky.sendPixel(0,0,0)
                 blinky.show()
-                time.sleep(theBPM / (dartRight - dartLeft))
+                time.sleep(bpmTime / (dartRight - dartLeft))
                 if G.keepGoing is False:
                     G.keepGoing = True
                     return
@@ -138,7 +138,7 @@ def dartInFour(blinky):
                 for i in range(dartRight-x+1,150):
                     blinky.sendPixel(0,0,0)
                 blinky.show()
-                time.sleep(theBPM / (dartRight - dartLeft))
+                time.sleep(bpmTime / (dartRight - dartLeft))
                 if G.keepGoing is False:
                     G.keepGoing = True
                     return
@@ -155,7 +155,7 @@ def dartInFour(blinky):
                 for i in range(x+1,150):
                     blinky.sendPixel(0,0,0)
                 blinky.show()
-                time.sleep(theBPM / (dartRight - dartLeft))
+                time.sleep(bpmTime / (dartRight - dartLeft))
                 if G.keepGoing is False:
                     G.keepGoing = True
                     return
@@ -172,7 +172,7 @@ def dartInFour(blinky):
                 for i in range(dartRight-x+1,150):
                     blinky.sendPixel(0,0,0)
                 blinky.show()
-                time.sleep(theBPM / (dartRight - dartLeft))
+                time.sleep(bpmTime / (dartRight - dartLeft))
                 if G.keepGoing is False:
                     G.keepGoing = True
                     return
