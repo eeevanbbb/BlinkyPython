@@ -26,7 +26,8 @@ def fourOnTheFloor(blinky):
         for i in range(0,150):
             blinky.sendPixel(0,0,0)
         blinky.show()
-        time.sleep(60.0/float(G.bpm) - flashTime)
+        theBPM = float(G.bpm)
+        time.sleep(60.0 / theBPM - flashTime)
         if G.keepGoing is False:
             G.keepGoing = True
             return
