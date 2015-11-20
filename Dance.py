@@ -3,7 +3,7 @@ import time
 
 import GlobalSettings as G
 
-flashTime = 1/50.0
+flashTime = 1/5.0
 
 def fourOnTheFloor(blinky):
     beat = 1
@@ -41,7 +41,8 @@ def alternatePush(blinky):
     while True:
         primaryColor = G.color
         secondaryColor = [(G.color[0] + 85) % 256,(G.color[1] + 85) % 256,(G.color[2] + 85) % 256]
-        tertiaryColor = [(secondaryColor[0] + 85) % 256,(secondaryColor[1] + 85) % 256,(secondaryColor[2] + 85) % 256]
+        #tertiaryColor = [(secondaryColor[0] + 85) % 256,(secondaryColor[1] + 85) % 256,(secondaryColor[2] + 85) % 256]
+        tertiaryColor = [G.color[0],(secondaryColor[1] + 85) % 256,secondaryColor[2]]
         colors = [primaryColor,secondaryColor,tertiaryColor]
         for i in range(0,150):
             color = colors[(i + position) % 3]
