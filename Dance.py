@@ -40,7 +40,7 @@ def alternatePush(blinky):
     while G.keepGoing is False:
         continue
     while True:
-        for i in range(0,150)
+        for i in range(0,150):
             color = colors[i % position]
             blinky.sendPixel(color[0],color[1],color[2])
         blinky.show()
