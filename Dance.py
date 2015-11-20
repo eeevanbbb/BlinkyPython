@@ -188,7 +188,7 @@ def swarm(blinky):
 
 
 def brightDark(blinky):
-    jumpFactor = 5
+    jumpFactor = 15
     while G.keepGoing is False:
         continue
     while True:
