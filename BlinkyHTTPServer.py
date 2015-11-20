@@ -213,13 +213,13 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     s.wfile.write("<p>Invalid Speed</p>")
                 else:
                     handleSpeed(speed)
-			elif s.path.startswith("/bpm/"):
-				bpm = s.path.split("/bpm/")[1]
-				s.wfile.write("<p>Received BPM: "+bpm+"</p>")
-				if validateBPM(bpm) == False:
-					s.wfile.write("<p>Invalid BPM</p>")
-				else:
-					handleBPM(bpm)
+            elif s.path.startswith("/bpm/"):
+                bpm = s.path.split("/bpm/")[1]
+                s.wfile.write("<p>Received BPM: "+bpm+"</p>")
+                if validateBPM(bpm) == False:
+                    s.wfile.write("<p>Invalid BPM</p>")
+                else:
+                    handleBPM(bpm)
             else:
                 s.wfile.write("<p>Invalid Route</p>")
             
