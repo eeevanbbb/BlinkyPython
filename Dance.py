@@ -100,8 +100,8 @@ def downbeatPeaks(blinky):
 def dartInFour(blinky):
     beat = 1
     dartCount = 0
-    dartLeft = 50
-    dartRight = 100
+    dartLeft = 65
+    dartRight = 85
     while G.keepGoing is False:
         continue
     while True:
