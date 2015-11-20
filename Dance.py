@@ -33,7 +33,7 @@ def fourOnTheFloor(blinky):
             return
 
 def alternatePush(blinky):
-    position = 1
+    position = 0
     primaryColor = G.color
     secondaryColor = [(G.color[0] + 85) % 256,(G.color[1] + 85) % 256,(G.color[2] + 85) % 256]
     tertiaryColor = [(secondaryColor[0] + 85) % 256,(secondaryColor[1] + 85) % 256,(secondaryColor[2] + 85) % 256]
@@ -42,10 +42,10 @@ def alternatePush(blinky):
         continue
     while True:
         for i in range(0,150):
-            color = colors[i % position]
+            color = colors[(i + position) % 3]
             blinky.sendPixel(color[0],color[1],color[2])
         blinky.show()
-        position = position % 3 + 1
+        position = (position + 1) % 3
         time.sleep(1.0/float(G.speed))
         if G.keepGoing is False:
             G.keepGoing = True
