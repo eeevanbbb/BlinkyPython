@@ -3,7 +3,7 @@ import time
 
 import GlobalSettings as G
 
-flashTime = 1/30.0
+flashTime = 1/10.0
 
 def fourOnTheFloor(blinky):
     beat = 1
@@ -28,7 +28,7 @@ def fourOnTheFloor(blinky):
             blinky.sendPixel(0,0,0)
         blinky.show()
         print "Sleep time: " + str(G.bpm/60 - flashTime)
-        time.sleep(G.bpm/60-flashTime)
+        time.sleep(60/G.bpm - flashTime)
         if G.keepGoing is False:
             G.keepGoing = True
             return
