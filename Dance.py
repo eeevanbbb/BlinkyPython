@@ -122,6 +122,12 @@ def dart(blinky):
                 blinky.sendPixel(theColor[0],theColor[1],theColor[2])
                 for i in range(x+1,150):
                     blinky.sendPixel(0,0,0)
+                blinky.show()
+                print "Sleep for " + str(bpmTime / (dartRight - dartLeft))
+                time.sleep(bpmTime / (dartRight - dartLeft))
+                if G.keepGoing is False:
+                    G.keepGoing = True
+                    return
         else:
             dartDirection = 0
             for x in range(0,dartRight-dartLeft):
@@ -130,12 +136,13 @@ def dart(blinky):
                 blinky.sendPixel(theColor[0],theColor[1],theColor[2])
                 for i in range(dartRight-x+1,150):
                     blinky.sendPixel(0,0,0)
-        blinky.show()
+                blinky.show()
+                print "Sleep for " + str(bpmTime / (dartRight - dartLeft))
+                time.sleep(bpmTime / (dartRight - dartLeft))
+                if G.keepGoing is False:
+                    G.keepGoing = True
+                    return
         beat = beat % 4 + 1
-        print "Sleep for " + str(bpmTime / (dartRight - dartLeft))
-        time.sleep(bpmTime / (dartRight - dartLeft))
-        if G.keepGoing is False:
-            G.keepGoing = True
-            return
+
 
 
