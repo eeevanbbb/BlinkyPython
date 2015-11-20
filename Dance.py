@@ -121,6 +121,7 @@ def dartInFour(blinky):
                 for i in range(x+1,150):
                     blinky.sendPixel(0,0,0)
                 blinky.show()
+                print "Sleep for " + str(bpmTime / (dartRight - dartLeft))
                 time.sleep(bpmTime / (dartRight - dartLeft))
                 if G.keepGoing is False:
                     G.keepGoing = True
