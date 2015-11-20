@@ -97,111 +97,45 @@ def downbeatPeaks(blinky):
             return
 
 
-def dartInFour(blinky):
+def dart(blinky):
     beat = 1
-    dartCount = 0
-    dartLeft = 65
-    dartRight = 85
+    dartLeft = 55
+    dartRight = 95
+    dartDirection = 0
     while G.keepGoing is False:
         continue
     while True:
         downbeatColor = G.color
         offbeatColor  = [255 - G.color[0],255 - G.color[1], 255 - G.color[2]]
-        if dartCount == 4:
-            #Dart
-            theBPM = float(G.bpm)
-            bpmTime = 60.0 / theBPM
+        theColor = offbeatColor
+        if beat == 1:
+            theColor = downbeatColor
 
-            #Dart 1
-            dartCount = 0
+        theBPM = float(G.bpm)
+        bpmTime = 60.0 / theBPM
+
+        if dartDirection == 0:
+            dartDirection = 1
             for x in range(dartLeft,dartRight):
                 for i in range(0,x):
                     blinky.sendPixel(0,0,0)
-                blinky.sendPixel(downbeatColor[0],downbeatColor[1],downbeatColor[2])
+                blinky.sendPixel(theColor[0],theColor[1],theColor[2])
                 for i in range(x+1,150):
                     blinky.sendPixel(0,0,0)
-                blinky.show()
-                print "Sleep for " + str(bpmTime / (dartRight - dartLeft))
-                time.sleep(bpmTime / (dartRight - dartLeft))
-                if G.keepGoing is False:
-                    G.keepGoing = True
-                    return
-            for i in range(0,150):
-                blinky.sendPixel(0,0,0)
-            blinky.show()
-
-            #Dart 2
-            dartCount = 0
-            for x in range(0,dartRight-dartLeft):
-                for i in range(0,dartRight-x):
-                    blinky.sendPixel(0,0,0)
-                blinky.sendPixel(offbeatColor[0],offbeatColor[1],offbeatColor[2])
-                for i in range(dartRight-x+1,150):
-                    blinky.sendPixel(0,0,0)
-                blinky.show()
-                time.sleep(bpmTime / (dartRight - dartLeft))
-                if G.keepGoing is False:
-                    G.keepGoing = True
-                    return
-            for i in range(0,150):
-                blinky.sendPixel(0,0,0)
-            blinky.show()
-
-            #Dart 3
-            dartCount = 0
-            for x in range(dartLeft,dartRight):
-                for i in range(0,x):
-                    blinky.sendPixel(0,0,0)
-                blinky.sendPixel(offbeatColor[0],offbeatColor[1],offbeatColor[2])
-                for i in range(x+1,150):
-                    blinky.sendPixel(0,0,0)
-                blinky.show()
-                time.sleep(bpmTime / (dartRight - dartLeft))
-                if G.keepGoing is False:
-                    G.keepGoing = True
-                    return
-            for i in range(0,150):
-                blinky.sendPixel(0,0,0)
-            blinky.show()
-
-            #Dart 4
-            dartCount = 0
-            for x in range(0,dartRight-dartLeft):
-                for i in range(0,dartRight-x):
-                    blinky.sendPixel(0,0,0)
-                blinky.sendPixel(offbeatColor[0],offbeatColor[1],offbeatColor[2])
-                for i in range(dartRight-x+1,150):
-                    blinky.sendPixel(0,0,0)
-                blinky.show()
-                time.sleep(bpmTime / (dartRight - dartLeft))
-                if G.keepGoing is False:
-                    G.keepGoing = True
-                    return
-            for i in range(0,150):
-                blinky.sendPixel(0,0,0)
-            blinky.show()
-            
-            dartCount = 0
-
         else:
-            #Standard Flash
-            for i in range(0,150):
-                if beat == 1:
-                    blinky.sendPixel(downbeatColor[0],downbeatColor[1],downbeatColor[2])
-                else:
-                    blinky.sendPixel(offbeatColor[0],offbeatColor[1],offbeatColor[2])
-            blinky.show()
-            beat = beat % 4 + 1 #[1,4]
-            time.sleep(flashTime)
-            if G.keepGoing is False:
-                G.keepGoing = True
-                return
-            for i in range(0,150):
-                blinky.sendPixel(0,0,0)
-            blinky.show()
-            dartCount += 1
-            theBPM = float(G.bpm)
-            time.sleep(60.0 / theBPM - flashTime)
-            if G.keepGoing is False:
-                G.keepGoing = True
-                return
+            dartDirection = 0
+            for x in range(0,dartRight-dartLeft):
+                for i in range(0,dartRight-x):
+                    blinky.sendPixel(0,0,0)
+                blinky.sendPixel(theColor[0],theColor[1],theColor[2])
+                for i in range(dartRight-x+1,150):
+                    blinky.sendPixel(0,0,0)
+        blinky.show()
+        beat = beat % 4 + 1
+        print "Sleep for " + str(bpmTime / (dartRight - dartLeft))
+        time.sleep(bpmTime / (dartRight - dartLeft))
+        if G.keepGoing is False:
+            G.keepGoing = True
+            return
+
+
