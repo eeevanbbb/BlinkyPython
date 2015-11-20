@@ -109,9 +109,8 @@ def dartInFour(blinky):
         offbeatColor  = [255 - G.color[0],255 - G.color[1], 255 - G.color[2]]
         if dartCount == 4:
             #Dart
-            
+
             #Dart 1
-            sleepTiem = dartTime / (dartRight - dartLeft)
             dartCount = 0
             for x in range(dartLeft,dartRight):
                 for i in range(0,x):
@@ -127,7 +126,6 @@ def dartInFour(blinky):
                 return
 
             #Dart 2
-            sleepTiem = dartTime / (dartRight - dartLeft)
             dartCount = 0
             for x in range(dartLeft,dartRight):
                 for i in range(0,dartRight-x):
@@ -143,7 +141,6 @@ def dartInFour(blinky):
                 return
 
             #Dart 3
-            sleepTiem = dartTime / (dartRight - dartLeft)
             dartCount = 0
             for x in range(dartLeft,dartRight):
                 for i in range(0,x):
@@ -159,7 +156,6 @@ def dartInFour(blinky):
                 return
 
             #Dart 4
-            sleepTiem = dartTime / (dartRight - dartLeft)
             dartCount = 0
             for x in range(dartLeft,dartRight):
                 for i in range(0,dartRight-x):
