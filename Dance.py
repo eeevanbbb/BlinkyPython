@@ -36,13 +36,13 @@ def alternatePush(blinky):
     position = 0
     count = 0
     threshold = 200
-    colors = [primaryColor,secondaryColor,tertiaryColor]
     while G.keepGoing is False:
         continue
     while True:
         primaryColor = G.color
         secondaryColor = [(G.color[0] + 85) % 256,(G.color[1] + 85) % 256,(G.color[2] + 85) % 256]
         tertiaryColor = [(secondaryColor[0] + 85) % 256,(secondaryColor[1] + 85) % 256,(secondaryColor[2] + 85) % 256]
+        colors = [primaryColor,secondaryColor,tertiaryColor]
         for i in range(0,150):
             color = colors[(i + position) % 3]
             blinky.sendPixel(color[0],color[1],color[2])
