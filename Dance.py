@@ -140,7 +140,7 @@ def dartInFour(blinky):
             time.sleep(60.0 / theBPM - flashTime)
             if G.keepGoing is False:
                 G.keepGoing = True
-                    return
+                return
 
             #Dart 3
             sleepTiem = dartTime / (dartRight - dartLeft)
@@ -156,7 +156,7 @@ def dartInFour(blinky):
             time.sleep(60.0 / theBPM - flashTime)
             if G.keepGoing is False:
                 G.keepGoing = True
-                    return
+                return
 
             #Dart 4
             sleepTiem = dartTime / (dartRight - dartLeft)
