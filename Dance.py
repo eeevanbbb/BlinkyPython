@@ -4,7 +4,7 @@ from random import randint
 
 import GlobalSettings as G
 
-flashTime = 1/5.0
+flashTime = 1/5.0 #must increase for > 300 BPM
 
 def fourOnTheFloor(blinky):
     beat = 1
@@ -95,3 +95,106 @@ def downbeatPeaks(blinky):
         if G.keepGoing is False:
             G.keepGoing = True
             return
+
+
+def dartInFour(blinky):
+    beat = 1
+    dartCount = 0
+    dartLeft = 60
+    dartRight = 80
+    while G.keepGoing is False:
+        continue
+    while True:
+        downbeatColor = G.color
+        offbeatColor  = [255 - G.color[0],255 - G.color[1], 255 - G.color[2]]
+        if dartCount == 4:
+            #Dart
+            
+            #Dart 1
+            sleepTiem = dartTime / (dartRight - dartLeft)
+            dartCount = 0
+            for x in range(dartLeft,dartRight):
+                for i in range(0,x):
+                    blinky.sendPixel(0,0,0)
+                blinky.sendPixel(downbeatColor[0],downbeatColor[1],downbeatColor[2])
+                for i in range(x+1,150):
+                    blinky.sendPixel(0,0,0)
+                blinky.show()
+                time.sleep(flashTime / (dartRight - dartLeft))
+            time.sleep(60.0 / theBPM - flashTime)
+            if G.keepGoing is False:
+                G.keepGoing = True
+                return
+
+            #Dart 2
+            sleepTiem = dartTime / (dartRight - dartLeft)
+            dartCount = 0
+            for x in range(dartLeft,dartRight):
+                for i in range(0,dartRight-x):
+                    blinky.sendPixel(0,0,0)
+                blinky.sendPixel(offbeatColor[0],offbeatColor[1],offbeatColor[2])
+                for i in range(dartRight-x+1,150):
+                    blinky.sendPixel(0,0,0)
+                blinky.show()
+                time.sleep(flashTime / (dartRight - dartLeft))
+            time.sleep(60.0 / theBPM - flashTime)
+            if G.keepGoing is False:
+                G.keepGoing = True
+                    return
+
+            #Dart 3
+            sleepTiem = dartTime / (dartRight - dartLeft)
+            dartCount = 0
+            for x in range(dartLeft,dartRight):
+                for i in range(0,x):
+                    blinky.sendPixel(0,0,0)
+                blinky.sendPixel(offbeatColor[0],offbeatColor[1],offbeatColor[2])
+                for i in range(x+1,150):
+                    blinky.sendPixel(0,0,0)
+                blinky.show()
+                time.sleep(flashTime / (dartRight - dartLeft))
+            time.sleep(60.0 / theBPM - flashTime)
+            if G.keepGoing is False:
+                G.keepGoing = True
+                    return
+
+            #Dart 4
+            sleepTiem = dartTime / (dartRight - dartLeft)
+            dartCount = 0
+            for x in range(dartLeft,dartRight):
+                for i in range(0,dartRight-x):
+                    blinky.sendPixel(0,0,0)
+                blinky.sendPixel(offbeatColor[0],offbeatColor[1],offbeatColor[2])
+                for i in range(dartRight-x+1,150):
+                    blinky.sendPixel(0,0,0)
+                blinky.show()
+                time.sleep(flashTime / (dartRight - dartLeft))
+            time.sleep(60.0 / theBPM - flashTime)
+            if G.keepGoing is False:
+                G.keepGoing = True
+                return
+            
+            dartCount = 0
+
+        else:
+            #Standard Flash
+            for i in range(0,150):
+                if beat == 1:
+                    blinky.sendPixel(downbeatColor[0],downbeatColor[1],downbeatColor[2])
+                else:
+                    blinky.sendPixel(offbeatColor[0],offbeatColor[1],offbeatColor[2])
+            blinky.show()
+            beat = beat % 4 + 1 #[1,4]
+            time.sleep(flashTime)
+            if G.keepGoing is False:
+                G.keepGoing = True
+                return
+            for i in range(0,150):
+                blinky.sendPixel(0,0,0)
+            blinky.show()
+            dartCount += 1
+            theBPM = float(G.bpm)
+            time.sleep(60.0 / theBPM - flashTime)
+            if G.keepGoing is False:
+                G.keepGoing = True
+                return
