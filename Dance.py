@@ -160,7 +160,7 @@ def swarm(blinky):
                 G.keepGoing = True
                 return
 
-        #Swarm out from middle at full speed
+        #Swarm out from middle at double speed
         for x in range(0,75):
             for i in range(0,150):
                 if i % 2 == 1 or (i > 75 - x and i < 75 + x):
@@ -168,7 +168,7 @@ def swarm(blinky):
                 else:
                     blinky.sendPixel(0,0,0)
             blinky.show()
-            time.sleep(1.0 / float(G.speed))
+            time.sleep(0.5 / float(G.speed))
             if G.keepGoing is False:
                 G.keepGoing = True
                 return
