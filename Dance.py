@@ -19,6 +19,7 @@ def fourOnTheFloor(blinky):
                 blinky.sendPixel(offbeatColor[0],offbeatColor[1],offbeatColor[2])
         blinky.show()
         beat = beat % 4 + 1 #[1,4]
+        print "Flash time: " + str(flashTime)
         time.sleep(flashTime)
         if G.keepGoing is False:
             G.keepGoing = True
@@ -26,6 +27,7 @@ def fourOnTheFloor(blinky):
         for i in range(0,150):
             blinky.sendPixel(0,0,0)
         blinky.show()
+        print "Sleep time: " + str(G.bpm/60 - flashTime)
         time.sleep(G.bpm/60-flashTime)
         if G.keepGoing is False:
             G.keepGoing = True
