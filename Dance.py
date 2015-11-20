@@ -140,7 +140,7 @@ def dartInFour(blinky):
                 time.sleep(flashTime / (dartRight - dartLeft))
             for i in range(0,150):
                 blinky.sendPixel(0,0,0)
-                blinky.show()
+            blinky.show()
             time.sleep(60.0 / theBPM - flashTime)
             if G.keepGoing is False:
                 G.keepGoing = True
@@ -158,7 +158,7 @@ def dartInFour(blinky):
                 time.sleep(flashTime / (dartRight - dartLeft))
             for i in range(0,150):
                 blinky.sendPixel(0,0,0)
-                blinky.show()
+            blinky.show()
             time.sleep(60.0 / theBPM - flashTime)
             if G.keepGoing is False:
                 G.keepGoing = True
@@ -176,7 +176,7 @@ def dartInFour(blinky):
                 time.sleep(flashTime / (dartRight - dartLeft))
             for i in range(0,150):
                 blinky.sendPixel(0,0,0)
-                blinky.show()
+            blinky.show()
             time.sleep(60.0 / theBPM - flashTime)
             if G.keepGoing is False:
                 G.keepGoing = True
