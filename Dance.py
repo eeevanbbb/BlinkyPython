@@ -147,7 +147,7 @@ def swarm(blinky):
     while G.keepGoing is False:
         continue
     while True:
-        #Come in from sides every other spot at half speed
+        #Come in from sides every other spot at full speed
         for x in range(0,75):
             for i in range(0,150):
                 if i % 2 == 1 and (i < x or i > 150-x):
@@ -155,7 +155,7 @@ def swarm(blinky):
                 else:
                     blinky.sendPixel(0,0,0)
             blinky.show()
-            time.sleep(2.0 / float(G.speed))
+            time.sleep(1.0 / float(G.speed))
             if G.keepGoing is False:
                 G.keepGoing = True
                 return
