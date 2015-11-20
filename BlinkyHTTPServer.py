@@ -139,8 +139,8 @@ def handleCommand(command):
         startRoutine(Beauty.start,name="Beauty")
     elif command == "FourOnTheFloor":
         startRoutine(Dance.fourOnTheFloor,name="Four on the Floor")
-	elif command == "AlternatePush":
-		startRoutine(Dance.alernatePush,name="Alternate Push")
+    elif command == "AlternatePush":
+        startRoutine(Dance.alernatePush,name="Alternate Push")
     elif command == "DCStart":
         startDC();
     elif command == "DCStop":
