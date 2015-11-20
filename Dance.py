@@ -185,3 +185,30 @@ def swarm(blinky):
             if G.keepGoing is False:
                 G.keepGoing = True
                 return
+
+
+def brightDark(blinky):
+    jumpFactor = 5
+    while G.keepGoing is False:
+        continue
+    while True:
+        #Go bright
+        for x in range(0,int(256/jumpFactor)):
+            for i in range(0,150):
+                blinky.sendPixel(x * jumpFactor, x * jumpFactor, x * jumpFactor)
+            blinky.show()
+            time.sleep(1.0 / float(G.speed))
+            if G.keepGoing is False:
+                G.keepGoing = True
+                return
+
+        #Go dark
+        for x in range(0,int(256/jumpFactor)):
+            for i in range(0,150):
+                blinky.sendPixel(255 - x * jumpFactor, 255 - x * jumpFactor, 255 - x * jumpFactor)
+            blinky.show()
+            time.sleep(1.0 / float(G.speed))
+            if G.keepGoing is False:
+                G.keepGoing = True
+                return
+
