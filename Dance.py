@@ -89,6 +89,7 @@ def downbeatPeaks(blinky):
             blinky.sendPixel(0,0,0)
         for i in range(150-(length+fuzz),150):
             blinky.sendPixel(G.color[0],G.color[1],G.color[2])
+        blinky.show()
         timeSinceBeat += (1.0/float(G.speed))
         time.sleep(1.0/float(G.speed))
         if G.keepGoing is False:
