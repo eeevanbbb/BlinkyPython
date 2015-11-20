@@ -1,5 +1,6 @@
 from BlinkyTape import BlinkyTape
 import time
+from random import randint
 
 import GlobalSettings as G
 
@@ -32,6 +33,7 @@ def fourOnTheFloor(blinky):
             G.keepGoing = True
             return
 
+
 def alternatePush(blinky):
     position = 0
     count = 0
@@ -55,6 +57,39 @@ def alternatePush(blinky):
         count += 1
         if count > threshold:
             count = 0
+        time.sleep(1.0/float(G.speed))
+        if G.keepGoing is False:
+            G.keepGoing = True
+            return
+
+
+def downbeatPeaks(blinky):
+    base = 15
+    offBeat = 40
+    downBeat = 60
+    beat = 1
+    timeSinceBeat = 0.0
+    while G.keepGoing is False:
+        continue
+    while True:
+        theBPM = float(G.bpm)
+        timeBetweenBeats = 60.0 / theBPM
+        fuzz = randint(-5,5)
+        length = base
+        if timeSinceBeat >= timeBetweenBeats:
+            timeSinceBeat -= timeBetweenBeats
+            beat = beat % 4 + 1
+            if beat == 1:
+                length = downBeat
+            else:
+                length = offBeat
+        for i in range(0,length+fuzz):
+            blinky.sendPixel(G.color[0],G.color[1],G.color[2])
+        for i in range(length+fuzz,150-(length+fuzz)):
+            blinky.sendPixel(0,0,0)
+        for i in range(150-(length+fuzz),150):
+            blinky.sendPixel(G.color[0],G.color[1],G.color[2])
+        timeSinceBeat += (1.0/float(G.speed))
         time.sleep(1.0/float(G.speed))
         if G.keepGoing is False:
             G.keepGoing = True
