@@ -3,7 +3,7 @@ import time
 
 import GlobalSettings as G
 
-flashTime = 1/10.0
+flashTime = 1/50.0
 
 def fourOnTheFloor(blinky):
     beat = 1
