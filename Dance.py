@@ -28,7 +28,7 @@ def fourOnTheFloor(blinky):
             blinky.sendPixel(0,0,0)
         blinky.show()
         print "Sleep time: " + str(G.bpm/60 - flashTime)
-        time.sleep(60/G.bpm - flashTime)
+        time.sleep(60.0/G.bpm - flashTime)
         if G.keepGoing is False:
             G.keepGoing = True
             return
