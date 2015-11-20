@@ -200,34 +200,34 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         else:
             if s.path.startswith("/command/"):
                 command = s.path.split("/command/")[1]
-                s.wfile.write("<p>Received Command: "+command+"</p>")
+                s.wfile.write("<h1>Received Command: "+command+"</h1>")
                 if validateCommand(command) == False:
-                    s.wfile.write("<p>Unrecognized Command</p>")
+                    s.wfile.write("<h1>Unrecognized Command</h1>")
                 else:
                     handleCommand(command)
             elif s.path.startswith("/color/"):
                 color = s.path.split("/color/")[1]
-                s.wfile.write("<p>Received Color: "+color+"</p>")
+                s.wfile.write("<h1>Received Color: "+color+"</h1>")
                 if validateColor(color) == False:
-                    s.wfile.write("<p>Invalid Color</p>")
+                    s.wfile.write("<h1>Invalid Color</h1>")
                 else:
                     handleColor(color)
             elif s.path.startswith("/speed/"):
                 speed = s.path.split("/speed/")[1]
-                s.wfile.write("<p>Received Speed: "+speed+"</p>")
+                s.wfile.write("<h1>Received Speed: "+speed+"</h1>")
                 if validateSpeed(speed) == False:
-                    s.wfile.write("<p>Invalid Speed</p>")
+                    s.wfile.write("<h1>Invalid Speed</h1>")
                 else:
                     handleSpeed(speed)
             elif s.path.startswith("/bpm/"):
                 bpm = s.path.split("/bpm/")[1]
-                s.wfile.write("<p>Received BPM: "+bpm+"</p>")
+                s.wfile.write("<h1>Received BPM: "+bpm+"</h1>")
                 if validateBPM(bpm) == False:
-                    s.wfile.write("<p>Invalid BPM</p>")
+                    s.wfile.write("<h1>Invalid BPM</h1>")
                 else:
                     handleBPM(bpm)
             else:
-                s.wfile.write("<p>Invalid Route</p>")
+                s.wfile.write("<h1>Invalid Route</h1>")
             
         
         s.wfile.write("</body></html>")
