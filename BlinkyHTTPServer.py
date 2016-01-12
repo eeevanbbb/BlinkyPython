@@ -116,7 +116,7 @@ def validateBPM(bpm):
 
 #Handle Input
 def handleCommand(command):
-	valid = True
+    valid = True
     if command == "Flash":
         startRoutine(flash_example.flash,name="Flash")
     elif command == "Stop":
