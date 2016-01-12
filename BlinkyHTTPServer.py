@@ -116,6 +116,7 @@ def validateBPM(bpm):
 
 #Handle Input
 def handleCommand(command):
+	valid = True
     if command == "Flash":
         startRoutine(flash_example.flash,name="Flash")
     elif command == "Stop":
@@ -157,6 +158,9 @@ def handleCommand(command):
         startRoutine(OutsideInRemix.start,name="OutsideInRemix")
     else:
         print("Unrecognized Command")
+        valid = False
+    if valid:
+    	GlobalSettings.setCommand(command)
     print(command)
     
 def handleColor(color):
@@ -199,6 +203,21 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 string += "<li>" + validCommand + "</li>"
             string+="</ul>"
             s.wfile.write(string)
+        elif s.path == "/request/state":
+        	string = "<p><h1>Command\n</h1>"
+        	string += GlobalSettings.command
+        	string += "</p><p><h1>Color\n</h1>"
+        	color = GlobalSettings.color
+        	colorString = "(" + str(color[0]) + "," + str(color[1]) + "," + str(color[2]) + ")"
+        	string += colorString
+        	string += "</p><p><h1>Speed\n</h1>"
+        	string += str(GlobalSettings.speed)
+        	string += "</p><p><h1>BPM\n</h1>"
+        	string += str(GlobalSettings.bpm)
+        	string += "</p><p><h1>DynaColor\n</h1>"
+        	string += str(GlobalSettings.dynaColor)
+        	string += "</p>"
+        	s.wfile.write(string)
         else:
             if s.path.startswith("/command/"):
                 command = s.path.split("/command/")[1]
