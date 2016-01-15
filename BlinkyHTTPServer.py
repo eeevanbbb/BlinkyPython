@@ -160,7 +160,8 @@ def handleCommand(command):
         print("Unrecognized Command")
         valid = False
     if valid:
-    	GlobalSettings.setCommand(command)
+    	if command != "DCStart" and command != "DCStop":
+			GlobalSettings.setCommand(command)
     print(command)
     
 def handleColor(color):
