@@ -89,3 +89,59 @@ def christmas1(blinky):
 			if G.keepGoing is False:
 				G.keepGoing = True
 				return
+				
+				
+def christmas2(blinky):
+	while G.keepGoing is True:
+		continue
+	while True:
+		#Spawn
+		for i in range(0,20):
+			sendGreenPixel(blinky)
+		for i in range(20,130):
+			sendBlackPixel(blinky)
+		for i in range(130,150):
+			sendRedPixel(blinky)
+		blinky.show()
+		time.sleep(0.5)
+		if G.keepGoing is False:
+			G.keepGoing = True
+			return
+		#Charge
+		for i in range(0,75):
+			for b in range(0,i):
+				sendBlackPixel(blinky)
+			for g in range(i,i+20):
+				if g < 75:
+					sendGreenPixel(blinky)
+			for b in range(i+20,150-(i+20)):
+				sendBlackPixel(blinky)
+			for r in range(150-(i+20),150-i):
+				sendRedPixel(blinky)
+			for b in range(150-i,150):
+				sendBlackPixel(blinky)
+			blinky.show()
+			time.sleep(1/float(G.speed))
+			if G.keepGoing is False:
+				G.keepGoing = True
+				return
+		#Wait
+		time.sleep(0.5)
+		if G.keepGoing is False:
+			G.keepGoing = True
+			return
+		#Charge out
+		for i in range(0,75):
+			for b in range(0,75-i):
+				sendBlackPixel(blinky)
+			for g in range(75-i,75):
+				sendGreenPixel(blinky)
+			for r in range(75,75+i):
+				sendRedPixel(blinky)
+			for b in range(75+i,150):
+				sendBlackPixel(blinky)
+			blinky.show()
+			time.sleep(0.5/float(G.speed)) #DOUBLE SPEED
+			if G.keepGoing is False:
+				G.keepGoing = True
+				return 
