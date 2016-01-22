@@ -9,7 +9,7 @@ def sendRedPixel(blinky):
 def sendGreenPixel(blinky):
     blinky.sendPixel(0,255,0)
     
-def Christmas1(blinky):
+def christmas1(blinky):
 	while G.keepGoing is False:
         continue
     while True:

@@ -15,6 +15,7 @@ import Music
 import OutsideInRemix
 import Beauty
 import Dance
+import Christmas
 
 #Blinky Code
 bb = BlinkyTape('/dev/ttyACM0',ledCount=150)
@@ -78,7 +79,7 @@ def rgb(triplet):
 
 
 #Validate Input
-command_list = ["RoundAndRound","Stop","Clear","Flash","Snake","OutsideIn","Random","Solid","Rainbow","DCStart","DCStop","OutsideInRemix","Beauty","FourOnTheFloor","AlternatePush","DownbeatPeaks","Dart","Swarm","BrightDark"]
+command_list = ["RoundAndRound","Stop","Clear","Flash","Snake","OutsideIn","Random","Solid","Rainbow","DCStart","DCStop","OutsideInRemix","Beauty","FourOnTheFloor","AlternatePush","DownbeatPeaks","Dart","Swarm","BrightDark","Christmas1"]
 
 def validateCommand(command):
     if command in command_list:
@@ -150,6 +151,8 @@ def handleCommand(command):
         startRoutine(Dance.swarm,name="Swarm")
     elif command == "BrightDark":
         startRoutine(Dance.brightDark,name="Bright-Dark")
+    elif command == "Christmas1":
+    	startRoutine(Christmas.christmas1,name="Christmas1")
     elif command == "DCStart":
         startDC();
     elif command == "DCStop":
