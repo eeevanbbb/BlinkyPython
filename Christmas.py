@@ -8,6 +8,9 @@ def sendRedPixel(blinky):
     
 def sendGreenPixel(blinky):
     blinky.sendPixel(0,255,0)
+
+def sendBlackPixel(blinky):
+	blinky.sendPixel(0,0,0)
     
 def christmas1(blinky):
     while G.keepGoing is False:
@@ -77,6 +80,8 @@ def christmas1(blinky):
 							sendGreenPixel(blinky)
 						else:
 							sendRedPixel(blinky)
+				else:
+					sendBlackPixel(blinky)
 			blinky.show()
 			time.sleep(1/float(G.speed))
 			if G.keepGoing is False:
