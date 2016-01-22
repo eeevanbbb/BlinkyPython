@@ -19,6 +19,8 @@ def christmas1(blinky):
     	#Left red
     	for i in range(0,75):
     		sendRedPixel(blinky)
+    	for i in range(75,150):
+    		sendBlackPixel(blinky)
 		blinky.show()
 		time.sleep(0.5)
 		if G.keepGoing is False:
