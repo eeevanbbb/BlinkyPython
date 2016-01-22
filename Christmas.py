@@ -69,7 +69,7 @@ def christmas1(blinky):
 		#Fall away
 		for t in range(0,75):
 			for i in range(0,150):
-				if i < 75 - t or i > 75 + t:
+				if i < 74 - t or i > 74 + t:
 					if i % 2 == 0:
 						if t % 2 == 0:
 							sendRedPixel(blinky)
