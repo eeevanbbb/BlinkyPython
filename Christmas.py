@@ -67,7 +67,7 @@ def christmas1(blinky):
 			G.keepGoing = True
 			return
 		#Fall away
-		for t in range(0,75):
+		for t in range(0,76):
 			for i in range(0,150):
 				if i < 74 - t or i > 74 + t:
 					if i % 2 == 0:
