@@ -150,7 +150,7 @@ def christmas2(blinky):
 			G.keepGoing = True
 			return
 		#Go crazy
-		for t in range(0,2*int(G.speed)):
+		for t in range(0,2*int(float(G.speed))):
 			for i in range(0,75):
 				if t % 2 == 0:
 					sendGreenPixel(blinky)
