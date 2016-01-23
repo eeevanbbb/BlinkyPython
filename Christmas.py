@@ -176,7 +176,7 @@ def christmas2(blinky):
 			return
 			
 			
-def christams3(blinky):
+def christmas3(blinky):
 	while G.keepGoing is False:
 		continue
 	while True:
