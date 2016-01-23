@@ -113,9 +113,9 @@ def christmas2(blinky):
 				sendBlackPixel(blinky)
 			for g in range(i,min(i+20,75)):
 				sendGreenPixel(blinky)
-			for b in range(min(75,i+20),min(75,150-(i+20))):
+			for b in range(min(75,i+20),max(75,150-(i+20))):
 				sendBlackPixel(blinky)
-			for r in range(min(75,150-(i+20)),150-i):
+			for r in range(max(75,150-(i+20)),150-i):
 				sendRedPixel(blinky)
 			for b in range(150-i,150):
 				sendBlackPixel(blinky)
