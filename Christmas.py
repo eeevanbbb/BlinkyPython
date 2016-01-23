@@ -92,7 +92,7 @@ def christmas1(blinky):
 				
 				
 def christmas2(blinky):
-	while G.keepGoing is True:
+	while G.keepGoing is False:
 		continue
 	while True:
 		#Spawn
