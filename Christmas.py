@@ -174,3 +174,21 @@ def christmas2(blinky):
 		if G.keepGoing is False:
 			G.keepGoing = True
 			return
+			
+			
+def christams3(blinky):
+	while G.keepGoing is False:
+		continue
+	while True:
+		for x in range(0,2):
+			for i in range(0,15):
+				for j in range(0,10):
+					if (i % 2 == 0 and x == 0) or (i % 2 == 1 and x == 1):
+						sendRedPixel(blinky)
+					else:
+						sendGreenPixel(blinky)
+			blinky.show()
+			time.sleep(0.5)
+			if G.keepGoing is False:
+				G.keepGoing = True
+				return
