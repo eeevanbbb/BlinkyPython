@@ -140,7 +140,7 @@ def christmas2(blinky):
 			for b in range(75+i,150):
 				sendBlackPixel(blinky)
 			blinky.show()
-			time.sleep(0.5/float(G.speed)) #DOUBLE SPEED
+			time.sleep(0.25/float(G.speed)) #QUADRUPLE SPEED
 			if G.keepGoing is False:
 				G.keepGoing = True
 				return 
