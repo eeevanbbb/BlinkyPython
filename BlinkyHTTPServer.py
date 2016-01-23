@@ -79,7 +79,7 @@ def rgb(triplet):
 
 
 #Validate Input
-command_list = ["RoundAndRound","Stop","Clear","Flash","Snake","OutsideIn","Random","Solid","Rainbow","DCStart","DCStop","OutsideInRemix","Beauty","FourOnTheFloor","AlternatePush","DownbeatPeaks","Dart","Swarm","BrightDark","Christmas1","Christmas2","Christmas3","ChristmasDance"]
+command_list = ["Clear","Stop","RoundAndRound","Flash","Snake","OutsideIn","Random","Solid","Rainbow","DCStart","DCStop","OutsideInRemix","Beauty","FourOnTheFloor","AlternatePush","DownbeatPeaks","Dart","Swarm","BrightDark","Christmas1","Christmas2","Christmas3","ChristmasDance"]
 
 def validateCommand(command):
     if command in command_list:
