@@ -79,7 +79,7 @@ def rgb(triplet):
 
 
 #Validate Input
-command_list = ["RoundAndRound","Stop","Clear","Flash","Snake","OutsideIn","Random","Solid","Rainbow","DCStart","DCStop","OutsideInRemix","Beauty","FourOnTheFloor","AlternatePush","DownbeatPeaks","Dart","Swarm","BrightDark","Christmas1","Christmas2","Christmas3"]
+command_list = ["RoundAndRound","Stop","Clear","Flash","Snake","OutsideIn","Random","Solid","Rainbow","DCStart","DCStop","OutsideInRemix","Beauty","FourOnTheFloor","AlternatePush","DownbeatPeaks","Dart","Swarm","BrightDark","Christmas1","Christmas2","Christmas3","ChristmasDance"]
 
 def validateCommand(command):
     if command in command_list:
@@ -157,6 +157,8 @@ def handleCommand(command):
     	startRoutine(Christmas.christmas2,name="Christmas2")
     elif command == "Christmas3":
     	startRoutine(Christmas.christmas3,name="Christmas3")
+    elif command == "ChristmasDance":
+    	startRoutine(Christmas.christmasDance,name="ChristmasDance")
     elif command == "DCStart":
         startDC();
     elif command == "DCStop":

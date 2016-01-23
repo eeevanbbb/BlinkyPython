@@ -192,3 +192,29 @@ def christmas3(blinky):
 			if G.keepGoing is False:
 				G.keepGoing = True
 				return
+				
+flashTime = 1/5.0 #must increase for > 300 BPM		
+def christmasDance(blinky):
+    red = True
+    while G.keepGoing is False:
+        continue
+    while True:
+        for i in range(0,150):
+            if red:
+                sendRedPixel(blinky)
+            else:
+                sendGreenPixel(blinky)
+        blinky.show()
+        red = not red
+        time.sleep(flashTime)
+        if G.keepGoing is False:
+            G.keepGoing = True
+            return
+        for i in range(0,150):
+            sendBlackPixel(blinky)
+        blinky.show()
+        theBPM = float(G.bpm)
+        time.sleep(60.0 / theBPM - flashTime)
+        if G.keepGoing is False:
+            G.keepGoing = True
+            return
