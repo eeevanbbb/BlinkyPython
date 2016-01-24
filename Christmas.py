@@ -227,7 +227,7 @@ def christmas4(blinky):
 		for t in range(0,30):
 			for x in range(0,15):
 				for i in range(0,10):
-					if (t <= 15 and x >= t) or (t >= 15 and x >= 30 - t):
+					if (t <= 15 and x <= t) or (t >= 15 and x >= 30 - t):
 						if (x % 2 == 0):
 							sendRedPixel(blinky)
 						else:
