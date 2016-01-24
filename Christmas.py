@@ -235,7 +235,7 @@ def christmas4(blinky):
 					else:
 						sendBlackPixel(blinky)
 			blinky.show()
-			time.sleep(0.5)
+			time.sleep(10.0/float(G.speed))
 			if G.keepGoing is False:
 				G.keepGoing = True
 				return
