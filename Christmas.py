@@ -218,3 +218,27 @@ def christmasDance(blinky):
         if G.keepGoing is False:
             G.keepGoing = True
             return
+            
+            
+def christmas4(blinky):
+	while G.keepGoing is False:
+		continue
+	while True:
+		for t in range(0,30):
+			for x in range(0,15):
+				for i in range(0,10):
+					if (t <= 15 and x >= t) or (t >= 15 and x >= 30 - t):
+						if (x % 2 == 0):
+							sendRedPixel(blinky)
+						else:
+							sendGreenPixel(blinky)
+					else:
+						sendBlackPixel(blinky)
+			blinky.show()
+			time.sleep(0.5)
+			if G.keepGoing is False:
+				G.keepGoing = True
+				return
+		
+					
+			
