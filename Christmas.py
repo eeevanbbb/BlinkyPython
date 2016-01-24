@@ -224,6 +224,7 @@ def christmas4(blinky):
 	while G.keepGoing is False:
 		continue
 	while True:
+		#Left to right
 		for t in range(0,30):
 			for x in range(0,15):
 				for i in range(0,10):
@@ -239,6 +240,21 @@ def christmas4(blinky):
 			if G.keepGoing is False:
 				G.keepGoing = True
 				return
-		
+		#Right to left
+		for t in range(0,30):
+			for x in range(0,15):
+				for i in range(0,10):
+					if (t <= 15 and x >= t) or (t >= 15 and x <= t-15):
+						if (x % 2 == 0):
+							sendRedPixel(blinky)
+						else:
+							sendGreenPixel(blinky)
+					else:
+						sendBlackPixel(blinky)
+			blinky.show()
+			time.sleep(1.0/float(G.speed))
+			if G.keepGoing is False:
+				G.keepGoing = True
+				return
 					
 			
