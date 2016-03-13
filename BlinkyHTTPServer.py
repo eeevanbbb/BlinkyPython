@@ -248,7 +248,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             string += '"dynaColor":'
             string += str(GlobalSettings.dynaColor).lower()
             string += '}'
-            s.wfile.wring(string)
+            s.wfile.write(string)
         else:
             if s.path.startswith("/command/"):
                 command = s.path.split("/command/")[1]
