@@ -204,9 +204,9 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         s.end_headers()
     def do_GET(s):
         s.send_response(200)
+        s.send_header("Content-type","text/html")
+        s.end_headers()
         if s.path != "/request/stateJSON":
-            s.send_header("Content-type","text/html")
-            s.end_headers()
             s.wfile.write("<html><head><title>Blinky Server Response</title></head><body>")
         if s.path == "/request/hello":
             s.wfile.write("<p>Hello! The server is running.</p>")
@@ -282,8 +282,8 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             else:
                 s.wfile.write("<h1>Invalid Route</h1>")
 
-
-        s.wfile.write("</body></html>")
+        if s.path != /request/stateJSON":
+            s.wfile.write("</body></html>")
 
 if __name__ == '__main__':
     server_class = BaseHTTPServer.HTTPServer
