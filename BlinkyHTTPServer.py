@@ -219,7 +219,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         elif s.path == "/request/commandsJSON":
             string = '{commands:['
             for i in range(0, len(command_list)):
-                string += '"' + validCommand + '"'
+                string += '"' + command_list[i] + '"'
                 if i != len(command_list) - 1:
                     string += ','
             string += ']}'
