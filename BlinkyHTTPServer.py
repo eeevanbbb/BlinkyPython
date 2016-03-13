@@ -220,7 +220,6 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             string = '{commands:['
             for validCommand in command_list:
                 string += '"' + validCommand + '",'
-            string -= ','
             string += ']}'
             s.wfile.write(string)
         elif s.path == "/request/state":
