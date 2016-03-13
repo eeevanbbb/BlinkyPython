@@ -282,7 +282,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             else:
                 s.wfile.write("<h1>Invalid Route</h1>")
 
-        if s.path != /request/stateJSON":
+        if s.path != "/request/stateJSON":
             s.wfile.write("</body></html>")
 
 if __name__ == '__main__':
