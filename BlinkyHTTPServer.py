@@ -33,7 +33,7 @@ def startRoutine(routine,name="routine"):
     thread.daemon = True
     thread.start()
     GlobalSettings.inProgress = True
-    
+
 def startDC():
     print("Starting Dynamic Color thread")
     GlobalSettings.dynaColor = True
@@ -47,7 +47,7 @@ def stopDC():
     GlobalSettings.dynaColor = False
 
 """
-#This is yet to be supported in the HTTP server 
+#This is yet to be supported in the HTTP server
 onLights = {}
 for x in range(0,150):
     onLights[x] = False
@@ -174,12 +174,12 @@ def handleCommand(command):
     	if command != "DCStart" and command != "DCStop":
 			GlobalSettings.setCommand(command)
     print(command)
-    
+
 def handleColor(color):
     red, green, blue = rgb(color)
     GlobalSettings.setColor([red,green,blue])
     print("Red: "+str(red)+" Green: "+str(green)+" Blue: "+str(blue))
-    
+
 def handleSpeed(speed):
     theSpeed = float(speed)
     GlobalSettings.setSpeed(speed)
@@ -206,7 +206,8 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         s.send_response(200)
         s.send_header("Content-type","text/html")
         s.end_headers()
-        s.wfile.write("<html><head><title>Blinky Server Response</title></head><body>")
+        if s.path != "/request/stateJSON" and s.path != "/request/commandsJSON":
+            s.wfile.write("<html><head><title>Blinky Server Response</title></head><body>")
         if s.path == "/request/hello":
             s.wfile.write("<p>Hello! The server is running.</p>")
         elif s.path == "/request/validcommands":
@@ -214,6 +215,14 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             for validCommand in command_list:
                 string += "<li>" + validCommand + "</li>"
             string+="</ul>"
+            s.wfile.write(string)
+        elif s.path == "/request/commandsJSON":
+            string = '{commands:['
+            for i in range(0, len(command_list)):
+                string += '"' + command_list[i] + '"'
+                if i != len(command_list) - 1:
+                    string += ','
+            string += ']}'
             s.wfile.write(string)
         elif s.path == "/request/state":
         	string = "<p><h1>Command\n</h1>"
@@ -230,6 +239,25 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         	string += str(GlobalSettings.dynaColor)
         	string += "</p>"
         	s.wfile.write(string)
+        elif s.path == "/request/stateJSON":
+            color = GlobalSettings.color
+            string = '{'
+            string += '"command":"'
+            string += GlobalSettings.command + '",'
+            string += '"colorR":'
+            string += str(color[0]) + ','
+            string += '"colorG":'
+            string += str(color[1]) + ','
+            string += '"colorB":'
+            string += str(color[2]) + ','
+            string += '"speed":'
+            string += str(GlobalSettings.speed) + ','
+            string += '"bpm":'
+            string += str(GlobalSettings.bpm) + ','
+            string += '"dynaColor":'
+            string += str(GlobalSettings.dynaColor).lower()
+            string += '}'
+            s.wfile.write(string)
         else:
             if s.path.startswith("/command/"):
                 command = s.path.split("/command/")[1]
@@ -261,10 +289,10 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     handleBPM(bpm)
             else:
                 s.wfile.write("<h1>Invalid Route</h1>")
-            
-        
-        s.wfile.write("</body></html>")
-        
+
+        if s.path != "/request/stateJSON" and s.path != "/request/commandsJSON":
+            s.wfile.write("</body></html>")
+
 if __name__ == '__main__':
     server_class = BaseHTTPServer.HTTPServer
     httpd = server_class((HOST_NAME, PORT_NUMBER), RequestHandler)
