@@ -204,9 +204,10 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         s.end_headers()
     def do_GET(s):
         s.send_response(200)
-        s.send_header("Content-type","text/html")
-        s.end_headers()
-        s.wfile.write("<html><head><title>Blinky Server Response</title></head><body>")
+        if s.path != "/request/stateJSON":
+            s.send_header("Content-type","text/html")
+            s.end_headers()
+            s.wfile.write("<html><head><title>Blinky Server Response</title></head><body>")
         if s.path == "/request/hello":
             s.wfile.write("<p>Hello! The server is running.</p>")
         elif s.path == "/request/validcommands":
