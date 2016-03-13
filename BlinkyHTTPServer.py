@@ -33,7 +33,7 @@ def startRoutine(routine,name="routine"):
     thread.daemon = True
     thread.start()
     GlobalSettings.inProgress = True
-    
+
 def startDC():
     print("Starting Dynamic Color thread")
     GlobalSettings.dynaColor = True
@@ -47,7 +47,7 @@ def stopDC():
     GlobalSettings.dynaColor = False
 
 """
-#This is yet to be supported in the HTTP server 
+#This is yet to be supported in the HTTP server
 onLights = {}
 for x in range(0,150):
     onLights[x] = False
@@ -174,12 +174,12 @@ def handleCommand(command):
     	if command != "DCStart" and command != "DCStop":
 			GlobalSettings.setCommand(command)
     print(command)
-    
+
 def handleColor(color):
     red, green, blue = rgb(color)
     GlobalSettings.setColor([red,green,blue])
     print("Red: "+str(red)+" Green: "+str(green)+" Blue: "+str(blue))
-    
+
 def handleSpeed(speed):
     theSpeed = float(speed)
     GlobalSettings.setSpeed(speed)
@@ -230,6 +230,25 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         	string += str(GlobalSettings.dynaColor)
         	string += "</p>"
         	s.wfile.write(string)
+        elif s.path == "/request/stateJSON":
+            color = GlobalSettings.color
+            string = '{'
+            string += '"command":"'
+            string += GlobalSettings.command + '",'
+            string += '"colorR":'
+            string += str(color[0]) + ','
+            string += '"colorG":'
+            string += str(color[1]) + ','
+            string += '"colorB":'
+            string += str(color[2]) + ','
+            string += '"speed":'
+            string += str(GlobalSettings.speed) + ','
+            string += '"bpm":'
+            string += str(GlobalSettings.bpm) + ','
+            string += '"dynaColor":'
+            string += str(GlobalSettings.dynaColor).lower()
+            string += '}'
+            s.wfile.wring(string)
         else:
             if s.path.startswith("/command/"):
                 command = s.path.split("/command/")[1]
@@ -261,10 +280,10 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     handleBPM(bpm)
             else:
                 s.wfile.write("<h1>Invalid Route</h1>")
-            
-        
+
+
         s.wfile.write("</body></html>")
-        
+
 if __name__ == '__main__':
     server_class = BaseHTTPServer.HTTPServer
     httpd = server_class((HOST_NAME, PORT_NUMBER), RequestHandler)
