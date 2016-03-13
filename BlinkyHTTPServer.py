@@ -218,8 +218,10 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             s.wfile.write(string)
         elif s.path == "/request/commandsJSON":
             string = '{commands:['
-            for validCommand in command_list:
-                string += '"' + validCommand + '",'
+            for i in range(0, len(command_list)):
+                string += '"' + validCommand + '"'
+                if i != len(command_list) - 1:
+                    string += ','
             string += ']}'
             s.wfile.write(string)
         elif s.path == "/request/state":
