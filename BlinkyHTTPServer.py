@@ -206,7 +206,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         s.send_response(200)
         s.send_header("Content-type","text/html")
         s.end_headers()
-        if s.path != "/request/stateJSON":
+        if s.path != "/request/stateJSON" or s.path != "/request/commandsJSON":
             s.wfile.write("<html><head><title>Blinky Server Response</title></head><body>")
         if s.path == "/request/hello":
             s.wfile.write("<p>Hello! The server is running.</p>")
@@ -215,6 +215,12 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             for validCommand in command_list:
                 string += "<li>" + validCommand + "</li>"
             string+="</ul>"
+            s.wfile.write(string)
+        elif s.path == "/request/commandsJSON":
+            string = '{commands:['
+            for validCommand in command_list:
+                string += '"' + validCommand + '",'
+            string += ']}'
             s.wfile.write(string)
         elif s.path == "/request/state":
         	string = "<p><h1>Command\n</h1>"
