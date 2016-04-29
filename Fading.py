@@ -8,7 +8,7 @@ def fade_red(blinky):
         continue
     while True:
         #fade up
-        for t in range(0,256):
+        for t in xrange(0,256,4):
             for x in range(0,150):
                 blinky.sendPixel(t,0,0)
             blinky.show()
@@ -17,7 +17,7 @@ def fade_red(blinky):
                 G.keepGoing = True
                 return
         #fade down
-        for t in range(0,256):
+        for t in xrange(0,256,4):
             for x in range(0,150):
                 blinky.sendPixel(256-t,0,0)
             blinky.show()
