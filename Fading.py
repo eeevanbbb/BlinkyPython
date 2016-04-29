@@ -25,7 +25,7 @@ def fade_channel(channel,blinky):
         for t in xrange(0,256,8):
             for x in range(0,150):
                 if channel == 0:
-                    blinky.sendPixel(256-,0,0)
+                    blinky.sendPixel(256-t,0,0)
                 elif channel == 1:
                     blinky.sendPixel(0,256-t,0)
                 elif channel == 2:
