@@ -55,4 +55,4 @@ while True:
 
     # wait 1ms - this is arbitrary, but wait(0) still resulted
     # in 100% cpu utilization
-    pygame.time.wait(1)
+    #pygame.time.wait(1)
