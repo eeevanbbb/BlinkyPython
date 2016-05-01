@@ -1,7 +1,7 @@
 #Run this program NOT on the Pi, but on another computer hooked up to a midi device
 
 import sys, pygame, pygame.midi
-import grequests
+from BlinkyHTTPServer import handleManualCommand
 
 # set up pygame
 pygame.init()
@@ -36,9 +36,8 @@ while True:
         if on:
             color = "ff0000"
 
-        #Send the request to turn on or off each light (on = red, off = black)
-        grequests.get("http://192.168.0.138:9001/manual/"+str(beginPixel)+"/"+color)
-        grequests.get("http://192.168.0.138:9001/manual/"+str(beginPixel+1)+"/"+color)
+        handleManualCommand(beginPixel,color)
+        handleManualCommand(beginPixel+1,color)
 
         print "HERE"
 
