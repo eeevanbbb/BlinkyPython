@@ -207,7 +207,7 @@ for i in range(0,150):
 def changeLight(lightIndex,color):
     if lightIndex == -1:
         for i in range(0,150):
-            colors[i] = [0,0,0]
+            colors[i] = color
     else:
         colors[lightIndex] = color
     for c in colors:
