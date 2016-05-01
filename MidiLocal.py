@@ -2,6 +2,7 @@
 
 from BlinkyTape import BlinkyTape
 import sys, pygame, pygame.midi
+import time
 
 #set up blinky
 bb = BlinkyTape('/dev/ttyACM0',ledCount=150)
@@ -14,6 +15,16 @@ def changeLight(lightIndex,color):
     for c in colors:
         bb.sendPixel(c[0],c[1],c[2])
     bb.show()
+
+#Fade currently on lights
+while True:
+    for c in colors:
+        for component in c:
+            if component != 0:
+                component -= 1
+        bb.sendPixel(c[0],c[1],c[2])
+    bb.show()
+    time.sleep(0.01)
 
 # set up pygame
 pygame.init()
