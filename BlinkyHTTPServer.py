@@ -203,7 +203,7 @@ def handleManualCommand(index,color):
 
 colors = []
 for i in range(0,150):
-    colors[i] = [0,0,0]
+    colors.append([0,0,0])
 def changeLight(lightIndex,color):
     colors[lightIndex] = color
     for c in colors:
