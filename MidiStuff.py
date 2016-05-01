@@ -23,26 +23,24 @@ while True:
         # so we just specify a high max value
         input = inp.read(1000)
 
-        note = input[0][0][1]
-        volume = input[0][0][2]
-        on = volume == 75
+        for message in input:
+            note = message[0][1]
+            volume = message[0][2]
+            on = volume == 75
 
-        beginPixel = (note - lowNote) * 2 #2 pixels per note
+            beginPixel = (note - lowNote) + 45 #middle of the tape
+            if beginPixel > 149:
+                beginPixel = 149 #This shouldn't happen...
 
-        #print onLights
-        print input
+            print input
+            print "Pixel: " + str(beginPixel)
 
-        color = "000000"
-        if on:
-            color = "ff0000"
+            color = "000000"
+            if on:
+                color = "ff0000"
 
-        #Send the request to turn on or off each light (on = red, off = black)
-        grequests.get("http://192.168.0.138:9001/manual/"+str(beginPixel)+"/"+color)
-        grequests.get("http://192.168.0.138:9001/manual/"+str(beginPixel+1)+"/"+color)
+            #Send the request to turn on or off each light (on = red, off = black)
+            grequests.get("http://192.168.0.138:9001/manual/"+str(beginPixel)+"/"+color)
+            grequests.get("http://192.168.0.138:9001/manual/"+str(beginPixel+1)+"/"+color)
 
-        print "HERE"
-
-
-    # wait 10ms - this is arbitrary, but wait(0) still resulted
-    # in 100% cpu utilization
-    pygame.time.wait(10)
+            print "HERE"
