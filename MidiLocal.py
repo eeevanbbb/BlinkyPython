@@ -33,7 +33,7 @@ while True:
     if inp.poll():
         # no way to find number of messages in queue
         # so we just specify a high max value
-        input = inp.read(1000)
+        input = inp.read(10000)
 
         note = input[0][0][1]
         volume = input[0][0][2]
