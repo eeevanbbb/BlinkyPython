@@ -207,7 +207,7 @@ for i in range(0,150):
 def changeLight(lightIndex,color):
     colors[lightIndex] = color
     for c in colors:
-        bb.sendPixel(color[0],color[1],color[2])
+        bb.sendPixel(c[0],c[1],c[2])
     bb.show()
 
 
