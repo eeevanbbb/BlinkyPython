@@ -107,7 +107,7 @@ def validateIndex(index):
         theIndex = int(index)
     except:
         return False
-    if not theIndex or theIndex < 0 or theIndex >= 150:
+    if theIndex < 0 or theIndex >= 150:
         return False
     else:
         return True
