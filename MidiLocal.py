@@ -32,7 +32,7 @@ while True:
             beginPixel = 148 #This shouldn't happen...
 
         #print onLights
-        print input
+        print "Pixel: " + str(beginPixel)
 
         color = "000000"
         if on:
