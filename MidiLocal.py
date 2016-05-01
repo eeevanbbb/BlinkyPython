@@ -28,6 +28,8 @@ while True:
         on = volume == 75
 
         beginPixel = (note - lowNote) * 2 #2 pixels per note
+        if beginPixel > 148:
+            beginPixel = 148 #This shouldn't happen...
 
         #print onLights
         print input
