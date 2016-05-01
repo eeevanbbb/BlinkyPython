@@ -16,16 +16,6 @@ def changeLight(lightIndex,color):
         bb.sendPixel(c[0],c[1],c[2])
     bb.show()
 
-#Fade currently on lights
-while True:
-    for c in colors:
-        for component in c:
-            if component != 0:
-                component -= 1
-        bb.sendPixel(c[0],c[1],c[2])
-    bb.show()
-    time.sleep(0.01)
-
 # set up pygame
 pygame.init()
 pygame.midi.init()
