@@ -39,9 +39,9 @@ while True:
         volume = input[0][0][2]
         on = volume == 75
 
-        beginPixel = (note - lowNote) * 2 #2 pixels per note
-        if beginPixel > 148:
-            beginPixel = 148 #This shouldn't happen...
+        beginPixel = (note - lowNote) + 45 #middle of the tape
+        if beginPixel > 149:
+            beginPixel = 149 #This shouldn't happen...
 
         print input
         print "Pixel: " + str(beginPixel)
@@ -51,7 +51,6 @@ while True:
             color = [255,0,0]
 
         changeLight(beginPixel,color)
-        changeLight(beginPixel+1,color)
 
 
     # wait 1ms - this is arbitrary, but wait(0) still resulted
