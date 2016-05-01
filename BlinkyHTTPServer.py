@@ -201,7 +201,7 @@ def handleManualCommand(index,color):
     changeLight(theIndex,[red,green,blue])
     print("Light #"+str(theIndex)+": ("+str(red)+","+str(green)+","+str(blue)+")")
 
-colors = {}
+colors = []
 for i in range(0,150):
     colors[i] = [0,0,0]
 def changeLight(lightIndex,color):
