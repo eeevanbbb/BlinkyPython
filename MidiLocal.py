@@ -12,7 +12,7 @@ for x in range( 0, pygame.midi.get_count() ):
     print pygame.midi.get_device_info(x)
 
 # open a specific midi device
-inp = pygame.midi.Input(2)
+inp = pygame.midi.Input(3)
 
 lowNote = 36
 highNote = 96
