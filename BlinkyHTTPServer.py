@@ -107,7 +107,7 @@ def validateIndex(index):
         theIndex = int(index)
     except:
         return False
-    if theIndex < 0 or theIndex >= 150:
+    if theIndex < -1 or theIndex >= 150:
         return False
     else:
         return True
@@ -205,7 +205,11 @@ colors = []
 for i in range(0,150):
     colors.append([0,0,0])
 def changeLight(lightIndex,color):
-    colors[lightIndex] = color
+    if lightIndex == -1:
+        for i in range(0,150):
+            colors[i] = [0,0,0]
+    else:
+        colors[lightIndex] = color
     for c in colors:
         bb.sendPixel(c[0],c[1],c[2])
     bb.show()
