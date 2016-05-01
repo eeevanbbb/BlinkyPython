@@ -1,7 +1,19 @@
-#Run this program NOT on the Pi, but on another computer hooked up to a midi device
+#Run this program WITHOUT the server running
 
+from BlinkyTape import BlinkyTape
 import sys, pygame, pygame.midi
-from BlinkyHTTPServer import handleManualCommand
+
+#set up blinky
+bb = BlinkyTape('/dev/ttyACM0',ledCount=150)
+
+colors = []
+for i in range(0,150):
+    colors.append([0,0,0])
+def changeLight(lightIndex,color):
+    colors[lightIndex] = color
+    for c in colors:
+        bb.sendPixel(c[0],c[1],c[2])
+    bb.show()
 
 # set up pygame
 pygame.init()
@@ -34,14 +46,12 @@ while True:
         #print onLights
         print "Pixel: " + str(beginPixel)
 
-        color = "000000"
+        color = [0,0,0]
         if on:
-            color = "ff0000"
+            color = [255,0,0]
 
-        handleManualCommand(beginPixel,color)
-        handleManualCommand(beginPixel+1,color)
-
-        print "HERE"
+        changeLight(beginPixel,color)
+        changeLight(beginPixel+1,color)
 
 
     # wait 1ms - this is arbitrary, but wait(0) still resulted
