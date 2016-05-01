@@ -199,7 +199,7 @@ def handleManualCommand(index,color):
     if GlobalSettings.command != "Clear":
         handleCommand("Clear")
     changeLight(theIndex,[red,green,blue])
-    print("Light #"+theIndex+": ("+str(red)+","+str(green)+","+str(blue)+")")
+    print("Light #"+str(theIndex)+": ("+str(red)+","+str(green)+","+str(blue)+")")
 
 colors = {}
 for i in range(0,150):
