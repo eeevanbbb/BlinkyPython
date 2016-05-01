@@ -42,6 +42,6 @@ while True:
         print "HERE"
 
 
-    # wait 10ms - this is arbitrary, but wait(0) still resulted
+    # wait 1ms - this is arbitrary, but wait(0) still resulted
     # in 100% cpu utilization
-    pygame.time.wait(10)
+    pygame.time.wait(1)
