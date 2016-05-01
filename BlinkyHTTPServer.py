@@ -47,28 +47,14 @@ def stopDC():
     print("Stopping Dynamic Color thread")
     GlobalSettings.dynaColor = False
 
-"""
-#This is yet to be supported in the HTTP server
-onLights = {}
-for x in range(0,150):
-    onLights[x] = False
-def showPixels(theOnLights):
-    for x in theOnLights:
-        onLights[int(x)] = theOnLights[x]
-    for x in onLights:
-        if onLights[x]:
-            bb.sendPixel(GlobalSettings.color[0],GlobalSettings.color[1],GlobalSettings.color[2])
-        else:
-            bb.sendPixel(0,0,0)
-    bb.show()
-"""
-
 #Note: Commands should come in as GET requests with the URL pattern:
-#192.168.0.137/command/start
+#192.168.0.138/command/start
 #Colors should be sent as hex strings:
-#192.168.0.137/color/ffffff
+#192.168.0.138/color/ffffff
 #Speed should be sent as a stringified double:
-#192.168.0.137/speed/30.521
+#192.168.0.138/speed/30.521
+#Manual commands should be sent as follows:
+#192.168.0.138/manual/149/ffffff
 
 
 #Color conversion code
@@ -115,6 +101,16 @@ def validateBPM(bpm):
 		return False
 	else:
 		return True
+
+def validateIndex(index):
+    try:
+        theIndex = int(index)
+    except:
+        return False
+    if not theIndex or theIndex < 0 or theIndex >= 150:
+        return False
+    else:
+        return True
 
 #Handle Input
 def handleCommand(command):
@@ -197,6 +193,22 @@ def handleBPM(bpm):
 	GlobalSettings.setBPM(bpm)
 	print("BPM: "+str(bpm))
 
+def handleManualCommand(index,color):
+    theIndex = int(index)
+    red, green, blue = rgb(color)
+    if GlobalSettings.command != "Clear":
+        handleCommand("Clear")
+    changeLight(theIndex,[red,green,blue])
+    print("Light #"+theIndex+": ("+str(red)+","+str(green)+","+str(blue)+")")
+
+colors = {}
+for i in range(0,150):
+    colors[i] = [0,0,0]
+def changeLight(lightIndex,color):
+    colors[lightIndex] = color
+    for c in colors:
+        bb.sendPixel(color[0],color[1],color[2])
+    bb.show()
 
 
 #HTTP Server Code, from https://wiki.python.org/moin/BaseHttpServer
@@ -294,6 +306,18 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     s.wfile.write("<h1>Invalid BPM</h1>")
                 else:
                     handleBPM(bpm)
+            elif s.path.startswith("/manual/"):
+                #Expect URLs of the form .../manual/light#/hexColor
+                manual_command = s.path.split("/manual/")[1]
+                components = manual_command.split("/")
+                index = components[0]
+                color = components[1]
+                if validateIndex(index) == False:
+                    s.wfile.write("<h1>Invalid Index</h1>")
+                elif validateColor(color) == False:
+                    s.wfile.write("<h1>Invalid Color</h1>")
+                else:
+                    handleManualCommand(index,color)
             else:
                 s.wfile.write("<h1>Invalid Route</h1>")
 
