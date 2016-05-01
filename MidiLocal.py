@@ -43,7 +43,7 @@ while True:
         if beginPixel > 148:
             beginPixel = 148 #This shouldn't happen...
 
-        #print onLights
+        print input
         print "Pixel: " + str(beginPixel)
 
         color = [0,0,0]
