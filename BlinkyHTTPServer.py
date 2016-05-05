@@ -17,6 +17,7 @@ import Beauty
 import Dance
 import Christmas
 import Fading
+import Rocketz
 
 #Blinky Code
 bb = BlinkyTape('/dev/ttyACM0',ledCount=150)
@@ -164,6 +165,8 @@ def handleCommand(command):
         startRoutine(Fading.fade_green,name="FadeGreen")
     elif command == "FadeBlue":
         startRoutine(Fading.fade_blue,name="FadeBlue")
+    elif command == "RocketCelebrate":
+        startRoutine(Rocketz.celebrate,name="Celebrate")
     elif command == "DCStart":
         startDC();
     elif command == "DCStop":
@@ -322,6 +325,8 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     s.wfile.write("<h1>Invalid Color</h1>")
                 else:
                     handleManualCommand(index,color)
+            elif s.path.startswith("/rocketz/celebrate"):
+                handleCommand("RocketCelebrate")
             else:
                 s.wfile.write("<h1>Invalid Route</h1>")
 
