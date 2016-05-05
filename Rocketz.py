@@ -70,3 +70,7 @@ def celebrate(blinky):
 			if G.keepGoing is False:
 				G.keepGoing = True
 				return
+    while True:
+    	if G.keepGoing is False:
+    		G.keepGoing = True
+    		return
