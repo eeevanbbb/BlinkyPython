@@ -37,7 +37,7 @@ def celebrate(blinky):
             return
 
     #Weird streamy thing for a few seconds
-    for n in range(0,3):
+    while True:
 		#Left to right
 		for t in range(0,30):
 			for x in range(0,15):
@@ -70,7 +70,3 @@ def celebrate(blinky):
 			if G.keepGoing is False:
 				G.keepGoing = True
 				return
-    while True:
-    	if G.keepGoing is False:
-    		G.keepGoing = True
-    		return
