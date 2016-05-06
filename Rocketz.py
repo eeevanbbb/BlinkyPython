@@ -111,7 +111,7 @@ def epicSave(blinky):
         for x in range(pos,150-carEnd):
             for i in range(0,carEnd):
                 sendBluePixel(blinky)
-            for i in range(carEnd+1,pos):
+            for i in range(carEnd+1,x):
                 sendBlackPixel(blinky)
             sendOrangePixel(blinky)
             for i in range(pos+1,150):
