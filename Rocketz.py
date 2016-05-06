@@ -103,7 +103,7 @@ def epicSave(blinky):
                 sendBlackPixel(blinky)
             blinky.show()
             time.sleep(1.0/60)
-    		if G.keepGoing is False:
+            if G.keepGoing is False:
     			G.keepGoing = True
     			return
 
@@ -118,7 +118,7 @@ def epicSave(blinky):
                     sendBlackPixel(blinky)
                 blinky.show()
                 time.sleep(1.0/60)
-        		if G.keepGoing is False:
+                if G.keepGoing is False:
         			G.keepGoing = True
         			return
 
@@ -133,12 +133,12 @@ def epicSave(blinky):
                     sendBlackPixel(blinky)
                 blinky.show()
                 time.sleep(1.0/60)
-        		if G.keepGoing is False:
+                if G.keepGoing is False:
         			G.keepGoing = True
         			return
 
             #sleep for a second then repeat
             time.sleep(1.0)
-    		if G.keepGoing is False:
+            if G.keepGoing is False:
     			G.keepGoing = True
     			return
