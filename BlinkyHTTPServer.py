@@ -167,6 +167,8 @@ def handleCommand(command):
         startRoutine(Fading.fade_blue,name="FadeBlue")
     elif command == "RocketCelebrate":
         startRoutine(Rocketz.celebrate,name="Celebrate")
+    elif command == "RocketSave":
+        startRoutine(Rocketz.epicSave,name="Save")
     elif command == "DCStart":
         startDC();
     elif command == "DCStop":
@@ -327,6 +329,8 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     handleManualCommand(index,color)
             elif s.path.startswith("/rocketz/celebrate"):
                 handleCommand("RocketCelebrate")
+            elif s.path.startswith("/rocketz/save"):
+                handleCommand("RocketSave")
             else:
                 s.wfile.write("<h1>Invalid Route</h1>")
 

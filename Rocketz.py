@@ -70,3 +70,75 @@ def celebrate(blinky):
 			if G.keepGoing is False:
 				G.keepGoing = True
 				return
+
+
+def epicSave(blinky):
+    while G.keepGoing is False:
+        continue
+    while True:
+        #ball towards goal
+        for x in range(0,150-25):
+            pos = 149 - x
+            for i in range(0,pos):
+                sendBlackPixel(blinky)
+            sendOrangePixel(blinky)
+            for i in range(pos+1,150):
+                sendBlackPixel(blinky)
+            blinky.show()
+            time.sleep(1.0/60)
+    		if G.keepGoing is False:
+    			G.keepGoing = True
+    			return
+
+        #soccar comes out of nowhere, but also still move the ball
+        for x in range(1,6):
+            pos = 25 - x
+            carEnd = x * 4
+            for i in range(0,carEnd):
+                sendBluePixel(blinky)
+            for i in range(carEnd+1,pos):
+                sendBlackPixel(blinky)
+            sendOrangePixel(blinky)
+            for i in range(pos+1,150):
+                sendBlackPixel(blinky)
+            blinky.show()
+            time.sleep(1.0/60)
+    		if G.keepGoing is False:
+    			G.keepGoing = True
+    			return
+
+            #collision sends ball flying
+            for x in range(pos,150-carEnd):
+                for i in range(0,carEnd):
+                    sendBluePixel(blinky)
+                for i in range(cardEnd+1,pos):
+                    sendBlackPixel(blinky)
+                sendOrangePixel(blinky)
+                for i in range(pos+1,150):
+                    sendBlackPixel(blinky)
+                blinky.show()
+                time.sleep(1.0/60)
+        		if G.keepGoing is False:
+        			G.keepGoing = True
+        			return
+
+            #slink away
+            for x in range(150-carEnd,150):
+                for i in range(0,150-x):
+                    sendBluePixel(blinky)
+                for i in range(150-x,x):
+                    sendBlackPixel(blinky)
+                sendOrangePixel(blinky)
+                for i in range(x+1,150):
+                    sendBlackPixel(blinky)
+                blinky.show()
+                time.sleep(1.0/60)
+        		if G.keepGoing is False:
+        			G.keepGoing = True
+        			return
+
+            #sleep for a second then repeat
+            time.sleep(1.0)
+    		if G.keepGoing is False:
+    			G.keepGoing = True
+    			return
