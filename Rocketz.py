@@ -117,7 +117,7 @@ def epicSave(blinky):
             for i in range(x+1,150):
                 sendBlackPixel(blinky)
             blinky.show()
-            time.sleep(1.0/60)
+            time.sleep(1.0/120) #faster
             if G.keepGoing is False:
     			G.keepGoing = True
     			return
@@ -136,6 +136,11 @@ def epicSave(blinky):
             if G.keepGoing is False:
     			G.keepGoing = True
     			return
+
+        #Clear
+        for x in range(0,150):
+            sendBlackPixel(blinky)
+        blinky.show()
 
         #sleep for a second then repeat
         time.sleep(1.0)
