@@ -225,7 +225,7 @@ def changeLight(lightIndex,color):
 #HTTP Server Code, from https://wiki.python.org/moin/BaseHttpServer
 HOST_NAME = '192.168.0.138'
 #HOST_NAME = 'localhost'
-PORT_NUMBER = 9001
+PORT_NUMBER = 80
 
 class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     def do_HEAD(s):
