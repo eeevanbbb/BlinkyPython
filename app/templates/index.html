@@ -9,17 +9,9 @@
   <input class="command_class" type="radio" name="command" value="{{ command }}" onclick="handleClick(this);">{{ command }}<br>
   {% endfor %}
   <script>
-  var commandButtons = document.getElementsByName("command");
-  for (var commandButton in commandButtons) {
-    console.log("Adding callback");
-    commandButton.onclick = function() {
-      console.log("button clicked");
-      alert(this.value);
-    };
-  }
-
   function handleClick(radioButton) {
-    console.log("Value: " + radioButton.value);
+    console.log("Selected: " + radioButton.value);
+    {{ handler(radioButton.value); }}
   }
   </script>
 </body>
