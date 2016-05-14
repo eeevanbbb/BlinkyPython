@@ -11,14 +11,13 @@
   <script>
   function handleClick(radioButton) {
     console.log("Selected: " + radioButton.value);
-    httpGetAsync("/command/"+radioButton.value,{
-      console.log("Callback");
+    httpGetAsync("/command/"+radioButton.value,function(response) {
+      console.log("Response: "+response);
     });
   }
 
 //From: http://stackoverflow.com/questions/247483/http-get-request-in-javascript
-  function httpGetAsync(theUrl, callback)
-{
+  function httpGetAsync(theUrl, callback) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
