@@ -6,8 +6,14 @@
 <body>
   <h1>Commands</h1>
   {% for command in commands %}
-  <input class="command_class" type="radio" name="command" value="{{ command }}" onclick="handleClick(this);" {% if command == currentCommand %}checked{% endif %}>{{ command }}<br>
+    {% if command != "DCStart" && command != "DCStop" %}
+      <input class="command_class" type="radio" name="command" value="{{ command }}" onclick="handleClick(this);" {% if command == currentCommand %}checked{% endif %}>{{ command }}<br>
+    {% endif %}
   {% endfor %}
+
+  <h1>Dynamic Color</h1>
+  <input id="dyna_off" type="radio" name="dyna" value="false" onclick="handleDyna(this);" {% if dynamicColor == "False" %}checked{% endif %}>Off<br>
+  <input id="dyna_on" type="radio" name="dyna" value="true" onclick="handleDyna(this);" {% if dynamicColor == "True" %}checked{% endif %}>Off<br>
 
   <h1>Speed</h1>
   <input id="speed_input" type="text" name="speed" value={{ currentSpeed }}>
@@ -18,6 +24,17 @@
   function handleClick(radioButton) {
     console.log("Selected: " + radioButton.value);
     httpGetAsync("/command/"+radioButton.value,function(response) {
+      console.log("Response: "+response);
+    });
+  }
+
+  function handleDyna(radioButton) {
+    console.log("Dyna Color: " + radioButton.value);
+    var command = "DCStart";
+    if (radioButton.value == "false") {
+      command = "DCStop";
+    }
+    httpGetAsync("/command/"+command,function(response) {
       console.log("Response: "+response);
     });
   }
