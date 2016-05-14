@@ -337,7 +337,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 #See https://github.com/agusmakmun/server-jinja2/blob/master/server.py
                 env = Environment(loader=PackageLoader('app','templates'))
                 template = env.get_template('index.html')
-                s.wfile.write(template.render(commands=command_list,currentCommand=GlobalSettings.command,currentSpeed=str(GlobalSettings.speed),dynamicColor=str(GlobalSettings.dynaColor)))
+                s.wfile.write(template.render(commands=command_list,currentCommand=GlobalSettings.command,currentSpeed=str(GlobalSettings.speed),dynamicColor=str(GlobalSettings.dynaColor),red=str(GlobalSettings.color[0]),green=str(GlobalSettings.color[1]),blue=str(GlobalSettings.color[2])))
             else:
                 s.wfile.write("<h1>Invalid Route</h1>")
 
