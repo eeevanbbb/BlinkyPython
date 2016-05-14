@@ -8,12 +8,13 @@
   {% for command in commands %}
   <input class="command_class" type="radio" name="command" value="{{ command }}">{{ command }}<br>
   {% endfor %}
+  <script>
+  var commandButtons = document.getElementsByName("command");
+  for (var commandButton in commandButtons) {
+    commandButton.onclick = function() {
+      alert(this.value);
+    }
+  }
+  </script>
 </body>
-<script>
-$(document).ready(function() {
-  $('.command_class').click(function() {
-      alert($(this).val());
-  });
-});
-</script>
 </html>
