@@ -25,7 +25,7 @@
   function setSpeed() {
     var speed = document.getElementById("speed_input").value;
     console.log("Speed: "+speed);
-    httpGetAsync("/speed/"+speed,function() {
+    httpGetAsync("/speed/"+speed,function(response) {
       console.log("Response: "+response);
     });
   }
