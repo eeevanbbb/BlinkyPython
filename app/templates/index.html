@@ -11,7 +11,7 @@
   <script>
   function handleClick(radioButton) {
     console.log("Selected: " + radioButton.value);
-    {{ handler(radioButton.value); }}
+    {% handler(radioButton.value); %}
   }
   </script>
 </body>
