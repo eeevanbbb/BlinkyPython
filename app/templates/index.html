@@ -11,8 +11,8 @@
   <script>
   var commandButtons = document.getElementsByName("command");
   for (var commandButton in commandButtons) {
-    console.log("clicked");
-    commandButton.onclick = function() {
+    commandButton.onchange = function() {
+      console.log("button clicked");
       alert(this.value);
     }
   }
