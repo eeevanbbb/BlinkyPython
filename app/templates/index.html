@@ -6,7 +6,14 @@
 <body>
   <h1>Commands</h1>
   {% for command in commands %}
-  <li>{{ command }}</li>
+  <input class="command_class" type="radio" name="command" value="{{ command }}">{{ command }}<br>
   {% endfor %}
 </body>
+<script>
+$(document).ready(function() {
+  $('.command_class').click(function() {
+      alert($(this).val());
+  });
+});
+</script>
 </html>
