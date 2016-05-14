@@ -333,7 +333,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 handleCommand("RocketCelebrate")
             elif s.path.startswith("/rocketz/save"):
                 handleCommand("RocketSave")
-            elif s.path == "/"":
+            elif s.path == "/":
                 #See https://github.com/agusmakmun/server-jinja2/blob/master/server.py
                 env = Environment(loader=PackageLoader('app','templates'))
                 template = env.get_template('index.html')
