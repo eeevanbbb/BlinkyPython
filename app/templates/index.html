@@ -6,7 +6,7 @@
 <body>
   <h1>Commands</h1>
   {% for command in commands %}
-    {% if command != "DCStart" && command != "DCStop" %}
+    {% if command != "DCStart" and command != "DCStop" %}
       <input class="command_class" type="radio" name="command" value="{{ command }}" onclick="handleClick(this);" {% if command == currentCommand %}checked{% endif %}>{{ command }}<br>
     {% endif %}
   {% endfor %}
