@@ -13,7 +13,7 @@
 
   <h1>Dynamic Color</h1>
   <input id="dyna_off" type="radio" name="dyna" value="false" onclick="handleDyna(this);" {% if dynamicColor == "False" %}checked{% endif %}>Off<br>
-  <input id="dyna_on" type="radio" name="dyna" value="true" onclick="handleDyna(this);" {% if dynamicColor == "True" %}checked{% endif %}>Off<br>
+  <input id="dyna_on" type="radio" name="dyna" value="true" onclick="handleDyna(this);" {% if dynamicColor == "True" %}checked{% endif %}>On<br>
 
   <h1>Speed</h1>
   <input id="speed_input" type="text" name="speed" value={{ currentSpeed }}>
