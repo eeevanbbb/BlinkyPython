@@ -27,9 +27,12 @@
 
   <div style="width: 50%; float: right;">
     <h1>Color</h1>
-    <input id="red_input" type="text" name="color" value={{ red }}>
-    <input id="green_input" type="text" name="color" value={{ green }}>
-    <input id="blue_input" type="text" name="color" value={{ blue }}>
+    <p>Red: </p>
+    <input id="red_input" type="text" name="color" value={{ red }}><br>
+    <p>Green: </p>
+    <input id="green_input" type="text" name="color" value={{ green }}><br>
+    <p>Blue: </p>
+    <input id="blue_input" type="text" name="color" value={{ blue }}><br>
     <button type="button" onclick="setColor()">Send</button>
   </div>
 
@@ -85,6 +88,7 @@
 
     function componentToHex(c) {
       var hex = c.toString(16);
+      console.log("c: "+str(c)+", hex: "+str(hex));
       return hex.length == 1 ? "0" + hex : hex;
     }
 
