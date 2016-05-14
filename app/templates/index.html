@@ -11,10 +11,11 @@
   <script>
   var commandButtons = document.getElementsByName("command");
   for (var commandButton in commandButtons) {
-    commandButton.onchange = function() {
+    console.log("Adding callback");
+    commandButton.click(function() {
       console.log("button clicked");
       alert(this.value);
-    }
+    });
   }
   </script>
 </body>
