@@ -4,21 +4,26 @@
   <title>Blinky Site</title>
 </head>
 <body>
-  <h1>Commands</h1>
-  {% for command in commands %}
-    {% if command != "DCStart" and command != "DCStop" %}
-      <input class="command_class" type="radio" name="command" value="{{ command }}" onclick="handleClick(this);" {% if command == currentCommand %}checked{% endif %}>{{ command }}<br>
-    {% endif %}
-  {% endfor %}
+  <div style="width: 50%; float: left;">
+    <h1>Commands</h1>
+    {% for command in commands %}
+      {% if command != "DCStart" and command != "DCStop" %}
+        <input class="command_class" type="radio" name="command" value="{{ command }}" onclick="handleClick(this);" {% if command == currentCommand %}checked{% endif %}>{{ command }}<br>
+      {% endif %}
+    {% endfor %}
+  </div>
 
-  <h1>Dynamic Color</h1>
-  <input id="dyna_off" type="radio" name="dyna" value="false" onclick="handleDyna(this);" {% if dynamicColor == "False" %}checked{% endif %}>Off<br>
-  <input id="dyna_on" type="radio" name="dyna" value="true" onclick="handleDyna(this);" {% if dynamicColor == "True" %}checked{% endif %}>On<br>
+  <div style="width: 50%; float: right;">
+    <h1>Dynamic Color</h1>
+    <input id="dyna_off" type="radio" name="dyna" value="false" onclick="handleDyna(this);" {% if dynamicColor == "False" %}checked{% endif %}>Off<br>
+    <input id="dyna_on" type="radio" name="dyna" value="true" onclick="handleDyna(this);" {% if dynamicColor == "True" %}checked{% endif %}>On<br>
+  </div>
 
-  <h1>Speed</h1>
-  <input id="speed_input" type="text" name="speed" value={{ currentSpeed }}>
-  <button type="button" onclick="setSpeed()">Send</button>
-
+  <div style="width: 50%; float: right;">
+    <h1>Speed</h1>
+    <input id="speed_input" type="text" name="speed" value={{ currentSpeed }}>
+    <button type="button" onclick="setSpeed()">Send</button>
+  </div>
 
   <script>
   function handleClick(radioButton) {
