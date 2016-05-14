@@ -4,6 +4,8 @@ import BaseHTTPServer
 import threading
 import subprocess
 
+from jinja2 import Environment, PackageLoader
+
 from BlinkyTape import BlinkyTape
 
 import GlobalSettings
@@ -331,6 +333,11 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 handleCommand("RocketCelebrate")
             elif s.path.startswith("/rocketz/save"):
                 handleCommand("RocketSave")
+            elif s.path == "/interactive":
+                #See https://github.com/agusmakmun/server-jinja2/blob/master/server.py
+                env = Environment(loader=PackageLoader('app','templates'))
+                template = env.get_template('index.html')
+                s.wfile.write(template.render(commands=command_list,handler=handleCommand))
             else:
                 s.wfile.write("<h1>Invalid Route</h1>")
 
