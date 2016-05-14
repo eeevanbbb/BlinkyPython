@@ -337,7 +337,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 #See https://github.com/agusmakmun/server-jinja2/blob/master/server.py
                 env = Environment(loader=PackageLoader('app','templates'))
                 template = env.get_template('index.html')
-                s.wfile.write(template.render(commands=command_list,handler=handleCommand))
+                s.wfile.write(template.render(commands=command_list))
             else:
                 s.wfile.write("<h1>Invalid Route</h1>")
 
