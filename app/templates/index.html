@@ -8,10 +8,24 @@
   {% for command in commands %}
   <input class="command_class" type="radio" name="command" value="{{ command }}" onclick="handleClick(this);" {% if command == currentCommand %}checked{% endif %}>{{ command }}<br>
   {% endfor %}
+
+  <h1>Speed</h1>
+  <input id="speed_input" type="text" name="speed" value={{ currentSpeed }}>
+  <button type="button" onclick="setSpeed()">Send</button>
+
+
   <script>
   function handleClick(radioButton) {
     console.log("Selected: " + radioButton.value);
     httpGetAsync("/command/"+radioButton.value,function(response) {
+      console.log("Response: "+response);
+    });
+  }
+
+  function setSpeed() {
+    var speed = document.getElementById("speed_input").value;
+    console.log("Speed: "+speed);
+    httpGetAsync("/speed/"+speed,function() {
       console.log("Response: "+response);
     });
   }
