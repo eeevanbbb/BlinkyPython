@@ -3,6 +3,7 @@ import BaseHTTPServer
 
 import threading
 import subprocess
+from urlparse import urlparse, parse_qs
 
 from jinja2 import Environment, PackageLoader
 
@@ -29,11 +30,18 @@ def stop():
     if GlobalSettings.inProgress == True:
         GlobalSettings.keepGoing = False
 
-def startRoutine(routine,name="routine"):
+def startRoutine(routine,name="routine",params=None):
     print("Stopping...")
     stop()
-    print("Starting "+name+"...")
-    thread = threading.Thread(target=routine,args=(bb, ))
+    paramsFound = False
+    if params:
+        print("Starting "+name+" with params "+str(params)+"...")
+        if name == "RocketCelebrate" and "team" in params:
+            thread = threading.Thread(target=routine,args=(bb, params['team']))
+            paramsFound = True
+    if not paramsFound:
+        print("Starting "+name+"...")
+        thread = threading.Thread(target=routine,args=(bb, ))
     thread.daemon = True
     thread.start()
     GlobalSettings.inProgress = True
@@ -116,7 +124,7 @@ def validateIndex(index):
         return True
 
 #Handle Input
-def handleCommand(command):
+def handleCommand(command, params):
     valid = True
     if command == "Flash":
         startRoutine(flash_example.flash,name="Flash")
@@ -168,7 +176,7 @@ def handleCommand(command):
     elif command == "FadeBlue":
         startRoutine(Fading.fade_blue,name="FadeBlue")
     elif command == "RocketCelebrate":
-        startRoutine(Rocketz.celebrate,name="Celebrate")
+        startRoutine(Rocketz.celebrate,name="Celebrate",params=params)
     elif command == "RocketSave":
         startRoutine(Rocketz.epicSave,name="Save")
     elif command == "DCStart":
@@ -290,12 +298,13 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             s.wfile.write(string)
         else:
             if s.path.startswith("/command/"):
-                command = s.path.split("/command/")[1]
+                command = s.path.split("/command/")[1].split("?")[0]
                 s.wfile.write("<h1>Received Command: "+command+"</h1>")
                 if validateCommand(command) == False:
                     s.wfile.write("<h1>Unrecognized Command</h1>")
                 else:
-                    handleCommand(command)
+                    params = parse_qs(urlparse(s.path).query)
+                    handleCommand(command, params)
             elif s.path.startswith("/color/"):
                 color = s.path.split("/color/")[1]
                 s.wfile.write("<h1>Received Color: "+color+"</h1>")

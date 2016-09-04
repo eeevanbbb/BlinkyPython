@@ -12,13 +12,13 @@ def sendOrangePixel(blinky):
 def sendBlackPixel(blinky):
     blinky.sendPixel(0,0,0)
 
-def celebrate(blinky):
+def celebrate(blinky, team=None):
     while G.keepGoing is False:
         continue
     #Flash for one second
     for t in range(30):
         for x in range(150):
-            sendBluePixel(blinky)
+            sendBluePixel(blinky) if team == 'blue' else sendOrangePixel(blinky)
 
         blinky.show()
 
@@ -43,10 +43,7 @@ def celebrate(blinky):
 			for x in range(0,15):
 				for i in range(0,10):
 					if (t <= 15 and x <= t) or (t >= 15 and x >= t-15):
-						if (x % 2 == 0):
-							sendBluePixel(blinky)
-						else:
-							sendOrangePixel(blinky)
+						sendBluePixel(blinky) if team == 'blue' else sendOrangePixel(blinky)
 					else:
 						sendBlackPixel(blinky)
 			blinky.show()
