@@ -39,6 +39,8 @@ def startRoutine(routine,name="routine",params=None):
         if name == "Celebrate" and "team" in params:
             thread = threading.Thread(target=routine,args=(bb, params['team'][0])) # no idea why this is a list...
             paramsFound = True
+        elif name == "Score":
+            thread = threading.Thread(target=routine,args=(bb, params['team'][0], int(params['score'][0])))
     if not paramsFound:
         print("Starting "+name+"...")
         thread = threading.Thread(target=routine,args=(bb, ))
@@ -179,6 +181,8 @@ def handleCommand(command, params=None):
         startRoutine(Rocketz.celebrate,name="Celebrate",params=params)
     elif command == "RocketSave":
         startRoutine(Rocketz.epicSave,name="Save")
+    elif command == "RocketScore":
+        startRoutine(Rocketz.score,name="Score",params=params)
     elif command == "DCStart":
         startDC();
     elif command == "DCStop":
@@ -345,6 +349,12 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     handleCommand("RocketCelebrate")
             elif s.path.startswith("/rocketz/save"):
                 handleCommand("RocketSave")
+            elif s.path.startswith("/rocketz/score"):
+                params = parse_qs(urlparse(s.path).query)
+                if 'score' in params and 'team' in params:
+                    handleCommand("RocketScore", params=params)
+                else:
+                    s.wfile.write("<h1>Invalid Route</h1>")
             elif s.path == "/":
                 #See https://github.com/agusmakmun/server-jinja2/blob/master/server.py
                 env = Environment(loader=PackageLoader('app','templates'))

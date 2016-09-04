@@ -142,3 +142,15 @@ def epicSave(blinky):
         if G.keepGoing is False:
 			G.keepGoing = True
 			return
+
+def score(blinky, team, score):
+    while G.keepGoing is False:
+        continue
+    while True:
+        for x in range(0,score):
+            sendBluePixel(blinky) if team == 'blue' else sendOrangePixel(blinky)
+        blinky.show()
+        time.sleep(0.5)
+        if G.keepGoing is False:
+    			G.keepGoing = True
+    			return
