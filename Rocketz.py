@@ -149,6 +149,8 @@ def score(blinky, team, score):
     while True:
         for x in range(0,score):
             sendBluePixel(blinky) if team == 'blue' else sendOrangePixel(blinky)
+        for x in range(score,150):
+            sendBlackPixel(blinky)
         blinky.show()
         time.sleep(0.5)
         if G.keepGoing is False:
