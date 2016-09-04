@@ -12,7 +12,7 @@ def sendOrangePixel(blinky):
 def sendBlackPixel(blinky):
     blinky.sendPixel(0,0,0)
 
-def celebrate(blinky, team):
+def celebrate(blinky, team=None):
     while G.keepGoing is False:
         continue
     #Flash for one second
