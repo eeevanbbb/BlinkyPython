@@ -57,9 +57,7 @@ def celebrate(blinky, team=None):
 				for i in range(0,10):
 					if (t <= 15 and (15 - x) <= t) or (t >= 15 and (15 - x) >= t-15):
 						if (x % 2 == 0):
-							sendBluePixel(blinky)
-						else:
-							sendOrangePixel(blinky)
+							sendBluePixel(blinky) if team == 'blue' else sendOrangePixel(blinky)
 					else:
 						sendBlackPixel(blinky)
 			blinky.show()

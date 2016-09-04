@@ -303,8 +303,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 if validateCommand(command) == False:
                     s.wfile.write("<h1>Unrecognized Command</h1>")
                 else:
-                    params = parse_qs(urlparse(s.path).query)
-                    handleCommand(command, params)
+                    handleCommand(command)
             elif s.path.startswith("/color/"):
                 color = s.path.split("/color/")[1]
                 s.wfile.write("<h1>Received Color: "+color+"</h1>")
@@ -339,7 +338,11 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 else:
                     handleManualCommand(index,color)
             elif s.path.startswith("/rocketz/celebrate"):
-                handleCommand("RocketCelebrate")
+                params = parse_qs(urlparse(s.path).query)
+                if 'team' in params:
+                    handleCommand("RocketCelebrate", params=params)
+                else:
+                    handleCommand("RocketCelebrate")
             elif s.path.startswith("/rocketz/save"):
                 handleCommand("RocketSave")
             elif s.path == "/":
