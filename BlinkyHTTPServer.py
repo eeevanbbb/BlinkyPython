@@ -124,7 +124,7 @@ def validateIndex(index):
         return True
 
 #Handle Input
-def handleCommand(command, params):
+def handleCommand(command, params=None):
     valid = True
     if command == "Flash":
         startRoutine(flash_example.flash,name="Flash")
