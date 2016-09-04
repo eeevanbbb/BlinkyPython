@@ -37,7 +37,7 @@ def startRoutine(routine,name="routine",params=None):
     if params:
         print("Starting "+name+" with params "+str(params)+"...")
         if name == "RocketCelebrate" and "team" in params:
-            thread = threading.Thread(target=routine,args=(bb, params['team']))
+            thread = threading.Thread(target=routine,args=(bb, params['team'][0])) # no idea why this is a list...
             paramsFound = True
     if not paramsFound:
         print("Starting "+name+"...")
