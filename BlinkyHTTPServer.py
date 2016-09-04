@@ -41,6 +41,7 @@ def startRoutine(routine,name="routine",params=None):
             paramsFound = True
         elif name == "Score":
             thread = threading.Thread(target=routine,args=(bb, params['team'][0], int(params['score'][0])))
+            paramsFound = True
     if not paramsFound:
         print("Starting "+name+"...")
         thread = threading.Thread(target=routine,args=(bb, ))
